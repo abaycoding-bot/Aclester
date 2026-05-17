@@ -1,21 +1,27 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="64" height="64" rx="12" fill="#ffffff"/>
-  
-  <!-- Huruf A merah -->
-  <polygon points="32,6 52,52 42,52 32,30 22,52 12,52" fill="#CC0000"/>
-  <!-- Lubang tengah A -->
-  <polygon points="32,26 38,42 26,42" fill="#ffffff"/>
-  
-  <!-- Teks </> hitam -->
-  <text x="32" y="46"
-    text-anchor="middle"
-    font-family="monospace"
-    font-weight="700"
-    font-size="13"
-    fill="#1a1a1a">&lt;/&gt;</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <rect width="800" height="600" fill="#EAE8E4"/>
 
-  <!-- Panah merah kanan atas -->
-  <line x1="38" y1="22" x2="56" y2="8" stroke="#CC0000" stroke-width="4" stroke-linecap="round"/>
-  <polygon points="56,8 46,10 54,18" fill="#CC0000"/>
+  <g transform="translate(40, 20)">
+    <path d="M 320 310 L 230 310 C 215 310 205 300 210 285 L 290 135 C 298 120 312 110 328 110 L 375 110 C 390 110 398 120 395 135 L 340 240 L 415 285 C 425 292 415 310 395 310 L 350 310" 
+          fill="#C82323"/>
+    <polygon points="318,170 275,260 345,260" fill="#EAE8E4"/>
+
+    <path d="M 400 170 C 430 110 510 110 540 160 L 475 225 L 530 225 C 540 225 550 215 565 195 L 610 130 L 620 160 L 640 100 L 580 110 L 595 125 L 550 190 C 530 210 515 210 505 210 L 450 210 Z" 
+          fill="#C82323"/>
+    <path d="M 445 220 C 420 260 430 315 480 325 C 530 335 570 300 585 265 L 535 265 C 520 280 495 290 475 275 C 455 260 455 235 470 220 Z" 
+          fill="#2A2A2A"/>
+
+    <path d="M 320 240 L 360 200 C 365 195 375 195 380 200 L 420 240 L 400 260 L 380 240 L 360 260 Z" fill="#2A2A2A" stroke="#EAE8E4" stroke-width="4"/>
+    <path d="M 350 230 L 335 237 L 350 244" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="375" y1="223" x2="365" y2="251" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 390 230 L 405 237 L 390 244" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="400" y="420" 
+        font-family="sans-serif" font-size="76" font-weight="900" 
+        fill="#C82323" text-anchor="middle" letter-spacing="2">Aclester</text>
+        
+  <text x="400" y="490" 
+        font-family="sans-serif" font-size="46" font-weight="700" 
+        fill="#2A2A2A" text-anchor="middle" letter-spacing="1">Web Developer</text>
 </svg>
