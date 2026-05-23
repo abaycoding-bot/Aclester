@@ -75,10 +75,68 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;padding:0 2rem;d
 .si-icon{width:50px;height:50px;border-radius:14px;background:var(--red-dim);display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:1rem;border:1px solid var(--red-border)}
 .sc h3{font-family:var(--font-d);font-size:.88rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em;line-height:1.45}
 .sc p{font-size:.865rem;color:var(--muted2);line-height:1.75}
+
+/* ===== PORTFOLIO CARDS - UPDATED ===== */
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
 .pc{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
 .pc:hover{transform:translateY(-6px);border-color:rgba(232,25,44,.3);box-shadow:0 20px 55px rgba(0,0,0,.45)}
-.pph{width:100%;height:200px;background:linear-gradient(135deg,#1e1212,#2a0d0d);display:flex;align-items:center;justify-content:center;font-size:3rem}
+
+/* Browser mockup wrapper */
+.pph{width:100%;height:210px;background:#111;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.browser-bar{display:flex;align-items:center;gap:7px;padding:8px 12px;background:#1a1a1a;border-bottom:1px solid rgba(255,255,255,0.06)}
+.b-dots{display:flex;gap:5px}
+.b-dot{width:9px;height:9px;border-radius:50%}
+.b-dot.r{background:#ff5f57}
+.b-dot.y{background:#febc2e}
+.b-dot.g{background:#28c840}
+.b-url{flex:1;background:#252525;border-radius:5px;padding:3px 10px;font-size:.64rem;color:#666;font-family:monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 8px}
+.browser-screen{width:100%;height:160px;position:relative;overflow:hidden}
+
+/* School website mockup */
+.mock-school{background:linear-gradient(160deg,#0a1628 0%,#0d2040 100%);width:100%;height:100%;position:relative;display:flex;flex-direction:column}
+.mock-school .m-nav{height:22px;background:rgba(30,60,120,0.8);display:flex;align-items:center;padding:0 10px;gap:8px}
+.mock-school .m-logo{width:14px;height:14px;background:linear-gradient(135deg,#3b82f6,#60a5fa);border-radius:3px}
+.mock-school .m-nav-links{display:flex;gap:6px;margin-left:8px}
+.mock-school .m-nl{width:24px;height:4px;background:rgba(148,163,184,0.4);border-radius:2px}
+.mock-school .m-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px}
+.mock-school .m-badge{background:rgba(59,130,246,0.25);border:1px solid rgba(59,130,246,0.4);border-radius:10px;padding:2px 8px;font-size:.45rem;color:#93c5fd;font-family:var(--font-b)}
+.mock-school .m-title{font-family:var(--font-d);font-size:.75rem;font-weight:900;color:#fff;text-align:center;line-height:1.2}
+.mock-school .m-title span{color:#60a5fa}
+.mock-school .m-cards{display:flex;gap:5px;margin-top:4px}
+.mock-school .m-card{width:36px;height:28px;background:rgba(30,58,138,0.6);border:1px solid rgba(59,130,246,0.2);border-radius:5px}
+
+/* Store website mockup */
+.mock-store{background:linear-gradient(160deg,#0a1a0a 0%,#0d2412 100%);width:100%;height:100%;position:relative;display:flex;flex-direction:column}
+.mock-store .m-nav{height:22px;background:rgba(21,128,61,0.3);display:flex;align-items:center;padding:0 10px;gap:8px;justify-content:space-between}
+.mock-store .m-logo{font-size:.5rem;color:#4ade80;font-weight:700;font-family:var(--font-d)}
+.mock-store .m-icons{display:flex;gap:5px}
+.mock-store .m-icon{width:10px;height:10px;border-radius:50%;background:rgba(74,222,128,0.3);border:1px solid rgba(74,222,128,0.4)}
+.mock-store .m-body{flex:1;display:flex;flex-direction:column;padding:6px 10px;gap:5px}
+.mock-store .m-banner{height:32px;background:linear-gradient(135deg,rgba(21,128,61,0.5),rgba(74,222,128,0.2));border-radius:5px;border:1px solid rgba(74,222,128,0.2);display:flex;align-items:center;padding:0 8px}
+.mock-store .m-banner-txt{font-size:.42rem;color:#4ade80;font-family:var(--font-d);font-weight:700}
+.mock-store .m-products{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.mock-store .m-prod{background:rgba(21,128,61,0.2);border:1px solid rgba(74,222,128,0.12);border-radius:4px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.mock-store .m-prod-img{width:16px;height:16px;background:rgba(74,222,128,0.25);border-radius:3px}
+.mock-store .m-prod-price{width:18px;height:3px;background:rgba(74,222,128,0.4);border-radius:2px}
+
+/* Coming soon mockup */
+.mock-company{background:linear-gradient(160deg,#0d0d0d 0%,#1a0d0d 100%);width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.mock-company .m-logo-big{width:32px;height:32px;background:linear-gradient(135deg,#e8192c,#ff6b3d);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.mock-company .m-logo-big svg{width:18px;height:18px}
+.mock-company .m-cs-title{font-family:var(--font-d);font-size:.65rem;font-weight:900;color:#fff;text-align:center}
+.mock-company .m-cs-sub{font-size:.42rem;color:#777;text-align:center;font-family:var(--font-b)}
+.mock-company .m-bar{width:80px;height:3px;background:linear-gradient(90deg,#e8192c,#ff6b3d);border-radius:2px;margin-top:2px}
+.mock-company .m-dots-row{display:flex;gap:6px;margin-top:4px}
+.mock-company .m-dot-sm{width:6px;height:6px;border-radius:50%;background:rgba(232,25,44,0.3)}
+.mock-company .m-dot-sm.a{background:rgba(232,25,44,0.8)}
+
+/* hover shine on browser */
+.pc:hover .browser-screen::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+
 .pb{padding:1.25rem 1.5rem 1.5rem}
 .ptags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
 .tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:50px;background:var(--red-dim);color:var(--red3);border:1px solid var(--red-border)}
@@ -89,6 +147,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;padding:0 2rem;d
 .plink:hover{gap:10px}
 .plink svg{width:13px;height:13px;transition:transform .2s}
 .plink:hover svg{transform:translate(2px,-2px)}
+
 .wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:1.25rem}
 .wc{padding:1.5rem;border-radius:16px;border:1px solid var(--border);background:var(--card);transition:border-color .25s,transform .25s}
 .wc:hover{border-color:rgba(232,25,44,.3);transform:translateY(-3px)}
@@ -208,8 +267,42 @@ footer{border-top:1px solid var(--border);padding:3.5rem 1.5rem 1.5rem;max-width
   <p class="ssub">Setiap project dikerjakan dengan penuh dedikasi — berikut beberapa yang sudah live.</p>
   <div class="pg">
 
+    <!-- Card 1: Smart School -->
     <div class="pc">
-      <div class="pph">🏫</div>
+      <div class="pph">
+        <!-- Browser chrome -->
+        <div class="browser-bar">
+          <div class="b-dots">
+            <div class="b-dot r"></div>
+            <div class="b-dot y"></div>
+            <div class="b-dot g"></div>
+          </div>
+          <div class="b-url">smart-school-management-portal...run.app</div>
+        </div>
+        <!-- Mockup screen -->
+        <div class="browser-screen">
+          <div class="mock-school">
+            <div class="m-nav">
+              <div class="m-logo"></div>
+              <div class="m-nav-links">
+                <div class="m-nl"></div>
+                <div class="m-nl"></div>
+                <div class="m-nl"></div>
+                <div class="m-nl"></div>
+              </div>
+            </div>
+            <div class="m-hero">
+              <div class="m-badge">🎓 Smart School Management</div>
+              <div class="m-title">Portal Digital<br><span>Sekolah Modern</span></div>
+              <div class="m-cards">
+                <div class="m-card"></div>
+                <div class="m-card"></div>
+                <div class="m-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="pb">
         <div class="ptags"><span class="tag">School</span><span class="tag">Memories</span><span class="tag tag-live">● Live</span></div>
         <h3>Smart School Management</h3>
@@ -221,8 +314,40 @@ footer{border-top:1px solid var(--border);padding:3.5rem 1.5rem 1.5rem;max-width
       </div>
     </div>
 
+    <!-- Card 2: Aclester Store -->
     <div class="pc">
-      <div class="pph" style="background:linear-gradient(135deg,#0a1a0d,#0d2a12);">🛒</div>
+      <div class="pph">
+        <div class="browser-bar">
+          <div class="b-dots">
+            <div class="b-dot r"></div>
+            <div class="b-dot y"></div>
+            <div class="b-dot g"></div>
+          </div>
+          <div class="b-url">aclesterstore.vercel.app</div>
+        </div>
+        <div class="browser-screen">
+          <div class="mock-store">
+            <div class="m-nav">
+              <div class="m-logo">AclesterStore</div>
+              <div class="m-icons">
+                <div class="m-icon"></div>
+                <div class="m-icon"></div>
+              </div>
+            </div>
+            <div class="m-body">
+              <div class="m-banner">
+                <div class="m-banner-txt">🛒 Toko Online Terlengkap</div>
+              </div>
+              <div class="m-products">
+                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
+                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
+                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
+                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="pb">
         <div class="ptags"><span class="tag">E-Commerce</span><span class="tag">Online Store</span><span class="tag tag-live">● Live</span></div>
         <h3>Aclester Store — Toko Online</h3>
@@ -234,8 +359,36 @@ footer{border-top:1px solid var(--border);padding:3.5rem 1.5rem 1.5rem;max-width
       </div>
     </div>
 
+    <!-- Card 3: Coming Soon -->
     <div class="pc">
-      <div class="pph">🌐</div>
+      <div class="pph">
+        <div class="browser-bar">
+          <div class="b-dots">
+            <div class="b-dot r"></div>
+            <div class="b-dot y"></div>
+            <div class="b-dot g"></div>
+          </div>
+          <div class="b-url">yourcompany.aclester.dev</div>
+        </div>
+        <div class="browser-screen">
+          <div class="mock-company">
+            <div class="m-logo-big">
+              <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.5 27.5 L19 11 L25.5 27.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M15 22.5 L23 22.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="m-cs-title">Company Profile</div>
+            <div class="m-cs-sub">Premium • Modern • SEO-Ready</div>
+            <div class="m-bar"></div>
+            <div class="m-dots-row">
+              <div class="m-dot-sm a"></div>
+              <div class="m-dot-sm"></div>
+              <div class="m-dot-sm"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="pb">
         <div class="ptags"><span class="tag">Company Profile</span><span class="tag">Business</span></div>
         <h3>Company Profile — Coming Soon</h3>
