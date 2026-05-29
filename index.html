@@ -5,476 +5,913 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="EwrP0iKfCrtLlizv7XWaFExdQ9_k2vi3MxMjTxg3lUQ" />
-<title>Aclester — Jasa Pembuatan Website Profesional , Terpercaya &amp; Iconic</title>
+<title>Aclester — Jasa Pembuatan Website Profesional, Terpercaya & Iconic</title>
 <meta name="description" content="Aclester — Jasa pembuatan website profesional, modern, dan SEO-friendly. Website company profile, toko online, landing page. Konsultasi gratis!">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0d0d;--bg2:#141414;--bg3:#1c1c1c;--card:#181818;
-  --red:#e8192c;--red2:#ff3347;--red3:#ff7a87;
-  --red-dim:rgba(232,25,44,0.1);--red-border:rgba(232,25,44,0.22);
-  --text:#f5f5f5;--muted:#777;--muted2:#aaa;--border:rgba(255,255,255,0.07);
-  --gradient:linear-gradient(135deg,#e8192c 0%,#ff6b3d 100%);
-  --gradient2:linear-gradient(135deg,#c8001a 0%,#e8192c 55%,#ff5533 100%);
-  --font-d:'Unbounded',sans-serif;--font-b:'Plus Jakarta Sans',sans-serif;
+  --bg:#080808;
+  --bg2:#0f0f0f;
+  --bg3:#161616;
+  --card:#111111;
+  --card2:#161616;
+  --red:#e8192c;
+  --red2:#ff3347;
+  --red3:#ff8a95;
+  --red-glow:rgba(232,25,44,0.18);
+  --red-dim:rgba(232,25,44,0.08);
+  --red-border:rgba(232,25,44,0.2);
+  --text:#f0f0f0;
+  --text2:#c8c8c8;
+  --muted:#666;
+  --muted2:#999;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.1);
+  --font-h:'Syne',sans-serif;
+  --font-b:'DM Sans',sans-serif;
+  --font-mono:'Space Mono',monospace;
+  --grad:linear-gradient(135deg,#e8192c 0%,#ff4d3d 100%);
+  --grad2:linear-gradient(135deg,#bf0018 0%,#e8192c 60%,#ff4d3d 100%);
+  --ease:cubic-bezier(0.16,1,0.3,1);
 }
-html{scroll-behavior:smooth}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.7;overflow-x:hidden}
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(232,25,44,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,25,44,0.025) 1px,transparent 1px);
-  background-size:64px 64px;
+
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;
+  opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:128px 128px;
 }
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(13,13,13,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none}
-.logo-svg{width:38px;height:38px;flex-shrink:0}
-.nav-wordmark{font-family:var(--font-d);font-size:1.1rem;font-weight:900;letter-spacing:-0.02em;color:var(--text);line-height:1}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+
+/* ─────────────────── NAV ─────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:64px;padding:0 clamp(1.5rem,4vw,3rem);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,8,8,0.85);
+  backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  transition:background .3s;
+}
+nav.scrolled{background:rgba(8,8,8,0.97)}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-hex{width:34px;height:34px;flex-shrink:0;filter:drop-shadow(0 0 12px rgba(232,25,44,0.5))}
+.nav-wordmark{font-family:var(--font-h);font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
 .nav-wordmark em{color:var(--red);font-style:normal}
-.nav-links{display:flex;align-items:center;gap:0.15rem;list-style:none}
-.nav-links a{color:var(--muted2);text-decoration:none;font-size:0.87rem;font-weight:600;padding:0.45rem 0.85rem;border-radius:9px;transition:color .2s,background .2s}
-.nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
-.nav-cta{background:var(--gradient2)!important;color:#fff!important;border-radius:50px!important;font-weight:700!important;box-shadow:0 0 22px rgba(232,25,44,0.3);transition:opacity .2s,transform .2s!important}
-.nav-cta:hover{opacity:.87!important;transform:translateY(-1px)!important;background:var(--gradient2)!important}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
-.orb1{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(232,25,44,0.13) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.orb2{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,100,50,0.07) 0%,transparent 70%);top:18%;right:8%;pointer-events:none}
-.orb3{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(232,25,44,0.07) 0%,transparent 70%);bottom:12%;left:6%;pointer-events:none}
-.hc{position:relative;z-index:1;max-width:840px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red-dim);border:1px solid var(--red-border);color:var(--red3);font-size:0.76rem;font-weight:700;padding:0.45rem 1.1rem;border-radius:50px;margin-bottom:1.75rem;letter-spacing:.09em;text-transform:uppercase;animation:fadeIn .5s ease both}
-.hero-badge::before{content:'';width:7px;height:7px;background:var(--red);border-radius:50%;box-shadow:0 0 10px var(--red);animation:blink 2s ease infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1{font-family:var(--font-d);font-size:clamp(2.2rem,6vw,4.8rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem;animation:slideUp .6s ease .1s both}
-.red-txt{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:1.08rem;color:var(--muted2);max-width:550px;margin:0 auto 2.5rem;line-height:1.85;animation:slideUp .6s ease .2s both}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:slideUp .6s ease .3s both}
-.btn-red{display:inline-flex;align-items:center;gap:8px;background:var(--gradient2);color:#fff;padding:.88rem 2.1rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.94rem;box-shadow:0 4px 28px rgba(232,25,44,.4);transition:transform .2s,box-shadow .2s,opacity .2s}
-.btn-red:hover{transform:translateY(-3px);box-shadow:0 8px 38px rgba(232,25,44,.5);opacity:.93}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:.88rem 2.1rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.94rem;border:1.5px solid rgba(255,255,255,.13);transition:border-color .2s,background .2s,transform .2s}
-.btn-outline:hover{border-color:var(--red-border);background:var(--red-dim);transform:translateY(-3px)}
-.stats-bar{display:flex;justify-content:center;flex-wrap:wrap;margin-top:4rem;border:1px solid var(--border);border-radius:18px;background:var(--card);overflow:hidden;max-width:660px;margin-left:auto;margin-right:auto;animation:slideUp .6s ease .4s both}
-.si{flex:1;min-width:130px;padding:1.4rem 1rem;text-align:center;border-right:1px solid var(--border)}
-.si:last-child{border-right:none}
-.si-num{font-family:var(--font-d);font-size:1.8rem;font-weight:900;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
-.si-lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;font-weight:600}
-.sw{padding:5.5rem 1.5rem;max-width:1100px;margin:0 auto}
-.stag{display:inline-flex;align-items:center;gap:7px;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red2);margin-bottom:.75rem}
-.stag::before{content:'';width:16px;height:2px;background:var(--gradient);border-radius:2px}
-.stitle{font-family:var(--font-d);font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:900;letter-spacing:-.025em;line-height:1.15;margin-bottom:.9rem}
-.ssub{color:var(--muted2);max-width:490px;font-size:.98rem;margin-bottom:3rem;line-height:1.8}
-.div{height:1px;background:linear-gradient(90deg,transparent,rgba(232,25,44,.18),transparent);max-width:1100px;margin:0 auto}
-.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.25rem}
-.sc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.7rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;cursor:default}
-.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,25,44,.07) 0%,transparent 55%);opacity:0;transition:opacity .3s;border-radius:18px}
-.sc:hover{border-color:rgba(232,25,44,.38);transform:translateY(-4px)}
-.sc:hover::before{opacity:1}
-.si-icon{width:50px;height:50px;border-radius:14px;background:var(--red-dim);display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:1rem;border:1px solid var(--red-border)}
-.sc h3{font-family:var(--font-d);font-size:.88rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em;line-height:1.45}
-.sc p{font-size:.865rem;color:var(--muted2);line-height:1.75}
-
-/* ===== PORTFOLIO CARDS - UPDATED ===== */
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-.pc{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
-.pc:hover{transform:translateY(-6px);border-color:rgba(232,25,44,.3);box-shadow:0 20px 55px rgba(0,0,0,.45)}
-
-/* Browser mockup wrapper */
-.pph{width:100%;height:210px;background:#111;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.browser-bar{display:flex;align-items:center;gap:7px;padding:8px 12px;background:#1a1a1a;border-bottom:1px solid rgba(255,255,255,0.06)}
-.b-dots{display:flex;gap:5px}
-.b-dot{width:9px;height:9px;border-radius:50%}
-.b-dot.r{background:#ff5f57}
-.b-dot.y{background:#febc2e}
-.b-dot.g{background:#28c840}
-.b-url{flex:1;background:#252525;border-radius:5px;padding:3px 10px;font-size:.64rem;color:#666;font-family:monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 8px}
-.browser-screen{width:100%;height:160px;position:relative;overflow:hidden}
-
-/* School website mockup */
-.mock-school{background:linear-gradient(160deg,#0a1628 0%,#0d2040 100%);width:100%;height:100%;position:relative;display:flex;flex-direction:column}
-.mock-school .m-nav{height:22px;background:rgba(30,60,120,0.8);display:flex;align-items:center;padding:0 10px;gap:8px}
-.mock-school .m-logo{width:14px;height:14px;background:linear-gradient(135deg,#3b82f6,#60a5fa);border-radius:3px}
-.mock-school .m-nav-links{display:flex;gap:6px;margin-left:8px}
-.mock-school .m-nl{width:24px;height:4px;background:rgba(148,163,184,0.4);border-radius:2px}
-.mock-school .m-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px}
-.mock-school .m-badge{background:rgba(59,130,246,0.25);border:1px solid rgba(59,130,246,0.4);border-radius:10px;padding:2px 8px;font-size:.45rem;color:#93c5fd;font-family:var(--font-b)}
-.mock-school .m-title{font-family:var(--font-d);font-size:.75rem;font-weight:900;color:#fff;text-align:center;line-height:1.2}
-.mock-school .m-title span{color:#60a5fa}
-.mock-school .m-cards{display:flex;gap:5px;margin-top:4px}
-.mock-school .m-card{width:36px;height:28px;background:rgba(30,58,138,0.6);border:1px solid rgba(59,130,246,0.2);border-radius:5px}
-
-/* Store website mockup */
-.mock-store{background:linear-gradient(160deg,#0a1a0a 0%,#0d2412 100%);width:100%;height:100%;position:relative;display:flex;flex-direction:column}
-.mock-store .m-nav{height:22px;background:rgba(21,128,61,0.3);display:flex;align-items:center;padding:0 10px;gap:8px;justify-content:space-between}
-.mock-store .m-logo{font-size:.5rem;color:#4ade80;font-weight:700;font-family:var(--font-d)}
-.mock-store .m-icons{display:flex;gap:5px}
-.mock-store .m-icon{width:10px;height:10px;border-radius:50%;background:rgba(74,222,128,0.3);border:1px solid rgba(74,222,128,0.4)}
-.mock-store .m-body{flex:1;display:flex;flex-direction:column;padding:6px 10px;gap:5px}
-.mock-store .m-banner{height:32px;background:linear-gradient(135deg,rgba(21,128,61,0.5),rgba(74,222,128,0.2));border-radius:5px;border:1px solid rgba(74,222,128,0.2);display:flex;align-items:center;padding:0 8px}
-.mock-store .m-banner-txt{font-size:.42rem;color:#4ade80;font-family:var(--font-d);font-weight:700}
-.mock-store .m-products{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.mock-store .m-prod{background:rgba(21,128,61,0.2);border:1px solid rgba(74,222,128,0.12);border-radius:4px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
-.mock-store .m-prod-img{width:16px;height:16px;background:rgba(74,222,128,0.25);border-radius:3px}
-.mock-store .m-prod-price{width:18px;height:3px;background:rgba(74,222,128,0.4);border-radius:2px}
-
-/* Coming soon mockup */
-.mock-company{background:linear-gradient(160deg,#0d0d0d 0%,#1a0d0d 100%);width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
-.mock-company .m-logo-big{width:32px;height:32px;background:linear-gradient(135deg,#e8192c,#ff6b3d);border-radius:8px;display:flex;align-items:center;justify-content:center}
-.mock-company .m-logo-big svg{width:18px;height:18px}
-.mock-company .m-cs-title{font-family:var(--font-d);font-size:.65rem;font-weight:900;color:#fff;text-align:center}
-.mock-company .m-cs-sub{font-size:.42rem;color:#777;text-align:center;font-family:var(--font-b)}
-.mock-company .m-bar{width:80px;height:3px;background:linear-gradient(90deg,#e8192c,#ff6b3d);border-radius:2px;margin-top:2px}
-.mock-company .m-dots-row{display:flex;gap:6px;margin-top:4px}
-.mock-company .m-dot-sm{width:6px;height:6px;border-radius:50%;background:rgba(232,25,44,0.3)}
-.mock-company .m-dot-sm.a{background:rgba(232,25,44,0.8)}
-
-/* hover shine on browser */
-.pc:hover .browser-screen::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 60%);
-  pointer-events:none;
+.nav-center{display:flex;align-items:center;gap:0.1rem;list-style:none}
+.nav-center a{
+  color:var(--muted2);text-decoration:none;font-size:0.845rem;font-weight:500;
+  padding:0.4rem 0.9rem;border-radius:8px;transition:color .2s,background .2s;
+  letter-spacing:.01em;
 }
+.nav-center a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.btn-nav{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--grad2);color:#fff;
+  padding:.5rem 1.3rem;border-radius:8px;
+  text-decoration:none;font-weight:600;font-size:.845rem;
+  box-shadow:0 0 20px rgba(232,25,44,0.3);
+  transition:box-shadow .25s,opacity .2s,transform .2s;
+  white-space:nowrap;
+}
+.btn-nav:hover{box-shadow:0 0 32px rgba(232,25,44,0.5);opacity:.92;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{
+  display:none;position:fixed;top:64px;left:0;right:0;bottom:0;z-index:490;
+  background:rgba(8,8,8,0.97);backdrop-filter:blur(24px);
+  padding:2rem 1.5rem;flex-direction:column;gap:0.25rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  color:var(--text2);text-decoration:none;font-size:1.2rem;font-weight:600;
+  font-family:var(--font-h);padding:.9rem 0;border-bottom:1px solid var(--border);
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--red)}
 
-.pb{padding:1.25rem 1.5rem 1.5rem}
-.ptags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
-.tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:50px;background:var(--red-dim);color:var(--red3);border:1px solid var(--red-border)}
-.tag-live{background:rgba(37,211,102,0.12);color:#4ade80;border-color:rgba(37,211,102,0.28)}
-.pb h3{font-family:var(--font-d);font-size:.88rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em}
-.pb p{font-size:.845rem;color:var(--muted2);margin-bottom:1rem;line-height:1.72}
-.plink{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;font-weight:700;color:var(--red2);text-decoration:none;transition:gap .2s}
-.plink:hover{gap:10px}
-.plink svg{width:13px;height:13px;transition:transform .2s}
-.plink:hover svg{transform:translate(2px,-2px)}
+/* ─────────────────── HERO ─────────────────── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:7rem clamp(1.5rem,5vw,3rem) 5rem;
+  position:relative;overflow:hidden;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(232,25,44,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,25,44,0.04) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 40%,transparent 100%);
+}
+.hero-orb{
+  position:absolute;width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,25,44,0.09) 0%,transparent 60%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+}
+.hero-left{}
+.hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:.7rem;
+  color:var(--red3);letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--red-border);border-radius:4px;
+  padding:.35rem .9rem;margin-bottom:2rem;
+  background:var(--red-dim);
+  animation:fadeUp .6s var(--ease) both;
+}
+.hero-label::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 8px var(--red);
+  animation:pulse 2s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.8)}}
+.hero h1{
+  font-family:var(--font-h);
+  font-size:clamp(2.6rem,5.5vw,5rem);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-.04em;
+  margin-bottom:1.5rem;
+  animation:fadeUp .6s var(--ease) .1s both;
+}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:inline-block;animation:lineUp .7s var(--ease) both}
+.hero h1 .line:nth-child(1) span{animation-delay:.05s}
+.hero h1 .line:nth-child(2) span{animation-delay:.12s}
+.hero h1 .line:nth-child(3) span{animation-delay:.19s}
+@keyframes lineUp{from{transform:translateY(110%);opacity:0}to{transform:none;opacity:1}}
+.highlight-text{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-desc{
+  font-size:1.05rem;color:var(--muted2);
+  line-height:1.85;max-width:440px;
+  margin-bottom:2.5rem;
+  animation:fadeUp .6s var(--ease) .25s both;
+}
+.hero-actions{
+  display:flex;gap:.85rem;flex-wrap:wrap;
+  animation:fadeUp .6s var(--ease) .35s both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--grad2);color:#fff;
+  padding:.85rem 2rem;border-radius:10px;
+  font-weight:600;font-size:.95rem;
+  text-decoration:none;
+  box-shadow:0 4px 30px rgba(232,25,44,.35);
+  transition:transform .25s var(--ease),box-shadow .25s,opacity .2s;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(232,25,44,.5)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:9px;
+  background:transparent;color:var(--text);
+  padding:.85rem 2rem;border-radius:10px;
+  font-weight:600;font-size:.95rem;text-decoration:none;
+  border:1px solid var(--border2);
+  transition:border-color .25s,background .25s,transform .25s var(--ease);
+}
+.btn-ghost:hover{border-color:rgba(232,25,44,.4);background:var(--red-dim);transform:translateY(-3px)}
+.hero-right{
+  animation:fadeUp .6s var(--ease) .2s both;
+}
+/* Stats card */
+.stats-block{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+}
+.stats-row{display:grid;grid-template-columns:1fr 1fr}
+.stat-item{
+  padding:1.75rem 1.5rem;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);
+  transition:background .25s;
+}
+.stat-item:nth-child(2n){border-right:none}
+.stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+.stat-item:hover{background:rgba(232,25,44,.04)}
+.stat-num{
+  font-family:var(--font-h);font-size:2.4rem;font-weight:800;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:.35rem;
+}
+.stat-label{font-size:.78rem;color:var(--muted2);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+/* Floating badge */
+.trust-badge{
+  display:flex;align-items:center;gap:10px;
+  margin-top:1.25rem;padding:1rem 1.25rem;
+  background:var(--card2);border:1px solid var(--border);border-radius:12px;
+}
+.tb-icon{width:36px;height:36px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.tb-text{font-size:.82rem;color:var(--muted2);line-height:1.5}
+.tb-text strong{color:var(--text);display:block;font-size:.88rem}
 
-.wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:1.25rem}
-.wc{padding:1.5rem;border-radius:16px;border:1px solid var(--border);background:var(--card);transition:border-color .25s,transform .25s}
-.wc:hover{border-color:rgba(232,25,44,.3);transform:translateY(-3px)}
-.wi{font-size:1.55rem;margin-bottom:.75rem}
-.wc h4{font-family:var(--font-d);font-size:.83rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em;line-height:1.45}
-.wc p{font-size:.845rem;color:var(--muted2);line-height:1.75}
-.tech-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.5rem}
-.tp{background:var(--bg3);border:1px solid var(--border);padding:.42rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;color:var(--muted2);transition:border-color .2s,color .2s;cursor:default}
-.tp:hover{border-color:rgba(232,25,44,.38);color:var(--text)}
-.prg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem}
-.prc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.75rem 1.5rem;position:relative;overflow:hidden;transition:border-color .25s}
-.prc:hover{border-color:rgba(232,25,44,.28)}
-.prc::after{content:attr(data-n);position:absolute;bottom:-14px;right:-2px;font-family:var(--font-d);font-size:5.5rem;font-weight:900;color:rgba(232,25,44,.055);line-height:1;pointer-events:none;user-select:none}
-.step-badge{font-family:var(--font-d);font-size:.7rem;font-weight:900;color:var(--red2);background:var(--red-dim);border:1px solid var(--red-border);padding:3px 10px;border-radius:50px;margin-bottom:1rem;display:inline-block}
-.prc h4{font-family:var(--font-d);font-size:.85rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em}
-.prc p{font-size:.845rem;color:var(--muted2);line-height:1.75}
-.ctaw{max-width:100%;padding:5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
-.cta-orb{position:absolute;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle,rgba(232,25,44,.1) 0%,transparent 68%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.cta-box{max-width:640px;margin:0 auto;position:relative;z-index:1;background:var(--card);border:1px solid rgba(232,25,44,.2);border-radius:24px;padding:3.5rem 2.5rem}
-.cta-box h2{font-family:var(--font-d);font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:900;letter-spacing:-.025em;line-height:1.15;margin-bottom:1rem}
-.cta-box p{color:var(--muted2);font-size:1rem;margin-bottom:2rem;line-height:1.8}
-.btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:1rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 4px 28px rgba(37,211,102,.25);transition:opacity .2s,transform .2s}
-.btn-wa:hover{opacity:.9;transform:translateY(-3px)}
-footer{border-top:1px solid var(--border);padding:3.5rem 1.5rem 1.5rem;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
-.fb .brow{display:flex;align-items:center;gap:10px;margin-bottom:.75rem}
-.fb .bn{font-family:var(--font-d);font-size:1rem;font-weight:900;color:var(--text)}
-.fb .bn em{color:var(--red);font-style:normal}
-.fb p{font-size:.83rem;color:var(--muted);line-height:1.75;max-width:210px}
-.fc h5{font-family:var(--font-d);font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:1rem}
-.fc ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
-.fc a{color:var(--muted2);text-decoration:none;font-size:.87rem;transition:color .2s}
-.fc a:hover{color:var(--text)}
-.fbot{border-top:1px solid var(--border);padding:1.25rem 1.5rem;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--muted)}
-.fbot .rr{color:var(--red);font-weight:700}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
-.reveal.visible{opacity:1;transform:none}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@media(max-width:900px){footer{grid-template-columns:1fr 1fr;gap:2rem}.fb{grid-column:1/-1}}
-@media(max-width:640px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,13,13,.97);padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);gap:.25rem}
-  .nav-links.open{display:flex}
+/* ─────────────────── SECTION WRAPPER ─────────────────── */
+.section{padding:6rem clamp(1.5rem,5vw,3rem);max-width:1200px;margin:0 auto}
+.section-header{margin-bottom:3.5rem}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);margin-bottom:.85rem;
+}
+.sec-eyebrow::after{content:'';flex:1;min-width:32px;height:1px;background:var(--red-border)}
+.sec-title{
+  font-family:var(--font-h);font-size:clamp(1.9rem,3.5vw,2.9rem);
+  font-weight:800;letter-spacing:-.035em;line-height:1.1;
+  margin-bottom:.8rem;
+}
+.sec-sub{color:var(--muted2);font-size:1rem;max-width:480px;line-height:1.8}
+.divider{height:1px;background:var(--border);max-width:100%}
+
+/* ─────────────────── SERVICES ─────────────────── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.srv{
+  background:var(--card);padding:2rem 1.75rem;
+  transition:background .3s;position:relative;overflow:hidden;
+}
+.srv::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(232,25,44,.06),transparent 50%);
+  opacity:0;transition:opacity .3s;
+}
+.srv:hover{background:var(--card2)}
+.srv:hover::after{opacity:1}
+.srv-num{
+  font-family:var(--font-mono);font-size:.65rem;font-weight:700;
+  color:var(--red);letter-spacing:.1em;margin-bottom:1.25rem;opacity:.7;
+}
+.srv-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--red-dim);border:1px solid var(--red-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.25rem;margin-bottom:1.1rem;
+}
+.srv h3{
+  font-family:var(--font-h);font-size:.92rem;font-weight:700;
+  margin-bottom:.6rem;letter-spacing:-.02em;
+}
+.srv p{font-size:.855rem;color:var(--muted2);line-height:1.75}
+
+/* ─────────────────── PORTFOLIO ─────────────────── */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.port-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  transition:border-color .3s,transform .35s var(--ease),box-shadow .3s;
+  cursor:pointer;
+}
+.port-card:hover{border-color:rgba(232,25,44,.35);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+/* browser frame */
+.port-preview{height:200px;background:#0c0c0c;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.browser-chrome{
+  height:28px;background:#151515;display:flex;align-items:center;
+  padding:0 12px;gap:8px;border-bottom:1px solid rgba(255,255,255,.05);
+  flex-shrink:0;
+}
+.chrome-dots{display:flex;gap:5px}
+.cd{width:8px;height:8px;border-radius:50%}
+.cd.r{background:#ff5f57}.cd.y{background:#febc2e}.cd.g{background:#28c840}
+.chrome-url{
+  flex:1;background:#1e1e1e;border-radius:4px;
+  padding:2px 10px;font-size:.6rem;color:#555;
+  font-family:var(--font-mono);margin:0 8px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.port-screen{width:100%;height:172px;overflow:hidden}
+
+/* school mockup */
+.mock-sch{
+  height:100%;
+  background:linear-gradient(150deg,#060e1f 0%,#0a1530 100%);
+  display:flex;flex-direction:column;
+}
+.ms-nav{height:24px;background:rgba(15,40,100,.6);display:flex;align-items:center;padding:0 12px;gap:6px;flex-shrink:0}
+.ms-logo{width:16px;height:16px;background:linear-gradient(135deg,#3b82f6,#60a5fa);border-radius:4px}
+.ms-links{display:flex;gap:7px;margin-left:auto}
+.ms-link{width:28px;height:3px;background:rgba(148,163,184,.35);border-radius:2px}
+.ms-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;gap:6px;text-align:center}
+.ms-badge{background:rgba(59,130,246,.2);border:1px solid rgba(96,165,250,.3);border-radius:20px;padding:2px 10px;font-size:.42rem;color:#93c5fd;font-family:var(--font-mono)}
+.ms-title{font-family:var(--font-h);font-size:.82rem;font-weight:700;color:#fff;line-height:1.2}
+.ms-title span{color:#60a5fa}
+.ms-cards{display:flex;gap:6px;margin-top:6px}
+.ms-card{width:40px;height:30px;background:rgba(30,58,138,.5);border:1px solid rgba(59,130,246,.15);border-radius:5px}
+
+/* store mockup */
+.mock-str{
+  height:100%;
+  background:linear-gradient(150deg,#050f08 0%,#091a0e 100%);
+  display:flex;flex-direction:column;
+}
+.mst-nav{height:24px;background:rgba(20,80,40,.4);display:flex;align-items:center;padding:0 12px;justify-content:space-between;flex-shrink:0}
+.mst-logo{font-size:.52rem;color:#4ade80;font-weight:700;font-family:var(--font-h)}
+.mst-icons{display:flex;gap:5px}
+.mst-ico{width:11px;height:11px;border-radius:50%;background:rgba(74,222,128,.25);border:1px solid rgba(74,222,128,.35)}
+.mst-body{flex:1;padding:8px 12px;display:flex;flex-direction:column;gap:6px}
+.mst-banner{height:34px;background:linear-gradient(135deg,rgba(21,128,61,.45),rgba(74,222,128,.15));border-radius:6px;border:1px solid rgba(74,222,128,.18);display:flex;align-items:center;padding:0 10px;font-size:.44rem;color:#4ade80;font-family:var(--font-h);font-weight:700}
+.mst-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.mst-prod{background:rgba(21,128,61,.18);border:1px solid rgba(74,222,128,.1);border-radius:5px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.mst-img{width:18px;height:18px;background:rgba(74,222,128,.22);border-radius:4px}
+.mst-price{width:20px;height:3px;background:rgba(74,222,128,.38);border-radius:2px}
+
+/* company mockup */
+.mock-co{
+  height:100%;
+  background:linear-gradient(150deg,#0d0005 0%,#160008 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+}
+.mco-logo{width:36px;height:36px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center}
+.mco-logo svg{width:20px;height:20px}
+.mco-name{font-family:var(--font-h);font-size:.72rem;font-weight:700;color:#fff}
+.mco-sub{font-size:.44rem;color:#666;font-family:var(--font-mono)}
+.mco-bar{width:72px;height:2px;background:var(--grad);border-radius:2px}
+.mco-pills{display:flex;gap:5px;margin-top:3px}
+.mco-pill{padding:2px 7px;border-radius:20px;font-size:.38rem;font-family:var(--font-mono);background:var(--red-dim);color:var(--red3);border:1px solid var(--red-border)}
+
+.port-info{padding:1.35rem 1.5rem 1.5rem}
+.port-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
+.ptag{
+  font-size:.64rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:4px;
+  background:var(--red-dim);color:var(--red3);border:1px solid var(--red-border);
+}
+.ptag-live{background:rgba(37,211,102,.1);color:#4ade80;border-color:rgba(37,211,102,.25)}
+.port-info h3{font-family:var(--font-h);font-size:.9rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.02em}
+.port-info p{font-size:.845rem;color:var(--muted2);line-height:1.72;margin-bottom:1rem}
+.port-link{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.84rem;font-weight:600;color:var(--red);
+  text-decoration:none;font-family:var(--font-h);font-size:.82rem;
+  transition:gap .2s;
+}
+.port-link:hover{gap:11px}
+.port-link svg{width:12px;height:12px;transition:transform .2s}
+.port-link:hover svg{transform:translate(2px,-2px)}
+
+/* ─────────────────── WHY US ─────────────────── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.why-card{
+  padding:1.75rem;border-radius:12px;
+  background:var(--card);border:1px solid var(--border);
+  transition:border-color .25s,transform .3s var(--ease);
+  position:relative;
+}
+.why-card:hover{border-color:rgba(232,25,44,.3);transform:translateY(-4px)}
+.wc-icon{font-size:1.5rem;margin-bottom:1rem}
+.wc-num{
+  position:absolute;top:1.5rem;right:1.5rem;
+  font-family:var(--font-mono);font-size:.62rem;
+  color:var(--muted);letter-spacing:.08em;
+}
+.why-card h4{font-family:var(--font-h);font-size:.88rem;font-weight:700;margin-bottom:.45rem;letter-spacing:-.02em}
+.why-card p{font-size:.845rem;color:var(--muted2);line-height:1.75}
+.tech-strip{
+  display:flex;flex-wrap:wrap;gap:.55rem;margin-top:2.5rem;
+  padding-top:2.5rem;border-top:1px solid var(--border);
+}
+.tech-pill{
+  padding:.38rem .9rem;border-radius:6px;
+  font-size:.76rem;font-weight:500;color:var(--muted2);
+  background:var(--card);border:1px solid var(--border);
+  font-family:var(--font-mono);transition:color .2s,border-color .2s;cursor:default;
+}
+.tech-pill:hover{color:var(--text);border-color:rgba(232,25,44,.35)}
+
+/* ─────────────────── PROCESS ─────────────────── */
+.process-track{display:flex;gap:0;position:relative}
+.process-track::before{
+  content:'';position:absolute;top:28px;left:14px;right:14px;height:1px;
+  background:linear-gradient(90deg,var(--red),rgba(232,25,44,.3));
+  z-index:0;
+}
+.proc-step{flex:1;position:relative;z-index:1;padding:0 .5rem}
+.proc-num-wrap{margin-bottom:1.25rem}
+.proc-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:#fff;
+  box-shadow:0 0 14px rgba(232,25,44,.4);
+}
+.proc-step h4{font-family:var(--font-h);font-size:.87rem;font-weight:700;margin-bottom:.45rem;letter-spacing:-.02em}
+.proc-step p{font-size:.82rem;color:var(--muted2);line-height:1.72}
+
+/* ─────────────────── CTA ─────────────────── */
+.cta-section{padding:5rem clamp(1.5rem,5vw,3rem);position:relative;overflow:hidden}
+.cta-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,25,44,.08) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-inner{
+  max-width:740px;margin:0 auto;position:relative;z-index:1;
+  border:1px solid rgba(232,25,44,.2);border-radius:20px;
+  background:linear-gradient(135deg,rgba(232,25,44,.06) 0%,rgba(255,255,255,.02) 100%);
+  padding:4rem 3rem;text-align:center;
+  backdrop-filter:blur(8px);
+}
+.cta-inner::before{
+  content:'';position:absolute;inset:-1px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(232,25,44,.3),transparent 50%,transparent);
+  z-index:-1;pointer-events:none;
+}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:.65rem;color:var(--red3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem}
+.cta-inner h2{font-family:var(--font-h);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.12;margin-bottom:.9rem}
+.cta-inner p{color:var(--muted2);font-size:1rem;max-width:440px;margin:0 auto 2.25rem;line-height:1.8}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;
+  padding:1rem 2.25rem;border-radius:10px;
+  font-weight:700;font-size:.95rem;text-decoration:none;
+  box-shadow:0 4px 30px rgba(131,58,180,.3);
+  transition:transform .25s var(--ease),box-shadow .25s,opacity .2s;
+}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(131,58,180,.45)}
+
+/* ─────────────────── FOOTER ─────────────────── */
+.footer-wrap{border-top:1px solid var(--border);padding:4rem clamp(1.5rem,5vw,3rem) 0;max-width:1200px;margin:0 auto}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.fb-brand{display:flex;align-items:center;gap:10px;margin-bottom:.9rem}
+.fb-name{font-family:var(--font-h);font-size:1.05rem;font-weight:800;color:var(--text)}
+.fb-name em{color:var(--red);font-style:normal}
+.footer-col>p{font-size:.84rem;color:var(--muted);line-height:1.75;max-width:220px}
+.footer-col h5{font-family:var(--font-mono);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:1.1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer-col a{color:var(--muted2);text-decoration:none;font-size:.86rem;transition:color .2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding:1.25rem 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;font-size:.77rem;color:var(--muted);
+}
+.footer-bottom .rr{color:var(--red);font-weight:700}
+.footer-bottom .mono{font-family:var(--font-mono);font-size:.68rem}
+
+/* ─────────────────── REVEAL ANIMATIONS ─────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-l.in{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-r.in{opacity:1;transform:none}
+/* stagger children */
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(1){transition-delay:.05s}
+.stagger.in>*:nth-child(2){transition-delay:.1s}
+.stagger.in>*:nth-child(3){transition-delay:.15s}
+.stagger.in>*:nth-child(4){transition-delay:.2s}
+.stagger.in>*:nth-child(5){transition-delay:.25s}
+.stagger.in>*:nth-child(6){transition-delay:.3s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ─────────────────── RESPONSIVE ─────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .hero-right{max-width:540px}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-main{grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-col:first-child{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .nav-center{display:none}
+  .btn-nav{display:none}
   .hamburger{display:flex}
-  .stats-bar{border-radius:14px}
-  .si{min-width:110px}
-  footer{grid-template-columns:1fr 1fr}
-  .cta-box{padding:2.5rem 1.5rem}
-  .fbot{justify-content:center;text-align:center}
+  .portfolio-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .process-track{flex-direction:column;gap:1.5rem}
+  .process-track::before{display:none}
+  .proc-step{padding:0}
+  .cta-inner{padding:2.5rem 1.5rem}
+}
+@media(max-width:540px){
+  .footer-main{grid-template-columns:1fr}
+  .footer-col:first-child{grid-column:auto}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .stat-item:nth-child(2n){border-right:none}
+  .footer-bottom{justify-content:center;text-align:center}
 }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- ══ NAV ══ -->
+<nav id="navbar">
   <a href="#home" class="nav-brand">
-    <svg class="logo-svg" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="g1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e8192c"/><stop offset="100%" stop-color="#ff6b3d"/></linearGradient></defs>
-      <path d="M19 3 L33.5 11 L33.5 27 L19 35 L4.5 27 L4.5 11 Z" fill="url(#g1)" opacity="0.13" stroke="url(#g1)" stroke-width="1.3"/>
-      <path d="M12.5 27.5 L19 11 L25.5 27.5" stroke="url(#g1)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <path d="M15 22.5 L23 22.5" stroke="url(#g1)" stroke-width="2.4" stroke-linecap="round"/>
-      <circle cx="27.5" cy="10.5" r="2.8" fill="url(#g1)"/>
-      <path d="M9.5 27.5 L13.5 27.5" stroke="#ff6b3d" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+    <svg class="logo-hex" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#e8192c"/>
+          <stop offset="100%" stop-color="#ff6b3d"/>
+        </linearGradient>
+      </defs>
+      <path d="M17 2.5 L29.5 9.75 L29.5 24.25 L17 31.5 L4.5 24.25 L4.5 9.75 Z" fill="url(#lg1)" opacity="0.15" stroke="url(#lg1)" stroke-width="1.2"/>
+      <path d="M11 25 L17 11 L23 25" stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M13.5 20.5 L20.5 20.5" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="24.5" cy="9.5" r="2.5" fill="url(#lg1)"/>
     </svg>
     <span class="nav-wordmark">Aclester<em>.</em></span>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home">Beranda</a></li>
+
+  <ul class="nav-center">
     <li><a href="#services">Layanan</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#why">Kenapa Kami</a></li>
     <li><a href="#process">Proses</a></li>
-    <li><a href="#contact" class="nav-cta">💬 Hubungi Kami</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+
+  <div class="nav-right">
+    <a href="https://instagram.com/ibnabayy" target="_blank" class="btn-nav">
+      📸 DM di Instagram
+    </a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobile()">Layanan</a>
+  <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+  <a href="#why" onclick="closeMobile()">Kenapa Kami</a>
+  <a href="#process" onclick="closeMobile()">Proses</a>
+  <a href="https://instagram.com/ibnabayy" target="_blank" onclick="closeMobile()" style="color:var(--red);margin-top:1rem;border:none">📸 DM di Instagram →</a>
+</div>
+
+<!-- ══ HERO ══ -->
 <section id="home" class="hero">
-  <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div>
-  <div class="hc">
-    <div class="hero-badge">Jasa Website Iconic &amp; Terpercaya</div>
-    <h1>Kami Bikin Website<br><span class="red-txt">yang Bikin Kesan</span></h1>
-    <p class="hero-sub">Aclester hadir untuk menghadirkan website modern, cepat, dan cantik untuk bisnis kamu — company profile, toko online, landing page, dan banyak lagi.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-red">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Mulai Project Sekarang
-      </a>
-      <a href="#portfolio" class="btn-outline">Lihat Portfolio →</a>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-label">
+        <span></span>
+        Jasa Website Iconic & Terpercaya
+      </div>
+      <h1>
+        <span class="line"><span>Website yang</span></span>
+        <span class="line"><span>Bikin Bisnis <em class="highlight-text">Kamu</em></span></span>
+        <span class="line"><span>Tumbuh.</span></span>
+      </h1>
+      <p class="hero-desc">Aclester menghadirkan website modern, cepat, dan berdampak — company profile, toko online, landing page. Kami tidak sekadar membangun website; kami membangun aset digital bisnis kamu.</p>
+      <div class="hero-actions">
+        <a href="https://instagram.com/ibnabayy" target="_blank" class="btn-primary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          DM di Instagram
+        </a>
+        <a href="#portfolio" class="btn-ghost">Lihat Portfolio →</a>
+      </div>
     </div>
-    <div class="stats-bar">
-      <div class="si"><div class="si-num">10+</div><div class="si-lbl">Website Dibuat</div></div>
-      <div class="si"><div class="si-num">10+</div><div class="si-lbl">Klien Puas</div></div>
-      <div class="si"><div class="si-num">2+</div><div class="si-lbl">Tahun Aktif</div></div>
-      <div class="si"><div class="si-num">100%</div><div class="si-lbl">Garansi Revisi</div></div>
+    <div class="hero-right">
+      <div class="stats-block">
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Website Dibuat</div></div>
+          <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Klien Puas</div></div>
+          <div class="stat-item"><div class="stat-num">2+</div><div class="stat-label">Tahun Aktif</div></div>
+          <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Garansi Revisi</div></div>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-icon">⚡</div>
+        <div class="tb-text">
+          <strong>Selesai dalam 3–7 Hari Kerja</strong>
+          Proses transparan, komunikasi via Instagram, revisi tak terbatas.
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="div"></div>
-<div class="sw reveal" id="services">
-  <div class="stag">Layanan Kami</div>
-  <h2 class="stitle">Semua yang Kamu<br>Butuhkan, Ada di Sini</h2>
-  <p class="ssub">Dari website sederhana sampai platform kompleks — kami tangani semuanya dengan standar premium.</p>
-  <div class="sg">
-    <div class="sc"><div class="si-icon">🏢</div><h3>Website Company Profile</h3><p>Tampilkan identitas bisnis kamu secara profesional dengan desain modern yang meninggalkan kesan mendalam pada setiap pengunjung.</p></div>
-    <div class="sc"><div class="si-icon">🎓</div><h3>Website Sekolah & Kelas</h3><p>Platform digital lengkap untuk sekolah dengan fitur jadwal, piket, struktur organisasi, galeri kegiatan, dan informasi penting lainnya.</p></div>
-    <div class="sc"><div class="si-icon">📰</div><h3>Website Berita & Blog</h3><p>Platform konten dengan CMS mudah dikelola, sistem kategori artikel, dan optimasi SEO untuk jangkauan konten yang maksimal.</p></div>
-    <div class="sc"><div class="si-icon">🎯</div><h3>Landing Page Konversi</h3><p>Halaman yang didesain khusus untuk mengkonversi pengunjung menjadi pelanggan dan meningkatkan penjualan bisnis kamu.</p></div>
-    <div class="sc"><div class="si-icon">🔍</div><h3>Optimasi SEO</h3><p>Website kamu akan mudah ditemukan di Google dengan teknik SEO modern, terstruktur, dan efektif untuk jangka panjang.</p></div>
-    <div class="sc"><div class="si-icon">🛠️</div><h3>Maintenance & Support</h3><p>Layanan perawatan rutin agar website kamu selalu update, aman, dan berjalan mulus tanpa hambatan setiap saat.</p></div>
+<div class="divider"></div>
+
+<!-- ══ SERVICES ══ -->
+<div class="section reveal" id="services">
+  <div class="section-header">
+    <div class="sec-eyebrow">Layanan Kami</div>
+    <h2 class="sec-title">Semua yang Kamu Butuhkan,<br>Ada di Sini</h2>
+    <p class="sec-sub">Dari website sederhana sampai platform kompleks — kami tangani semuanya dengan standar premium.</p>
+  </div>
+  <div class="services-grid stagger">
+    <div class="srv">
+      <div class="srv-num">01</div>
+      <div class="srv-icon">🏢</div>
+      <h3>Website Company Profile</h3>
+      <p>Tampilkan identitas bisnis secara profesional dengan desain modern yang meninggalkan kesan mendalam pada setiap pengunjung.</p>
+    </div>
+    <div class="srv">
+      <div class="srv-num">02</div>
+      <div class="srv-icon">🎓</div>
+      <h3>Website Sekolah & Kelas</h3>
+      <p>Platform digital lengkap dengan fitur jadwal, piket, struktur organisasi, galeri kegiatan, dan informasi penting lainnya.</p>
+    </div>
+    <div class="srv">
+      <div class="srv-num">03</div>
+      <div class="srv-icon">📰</div>
+      <h3>Website Berita & Blog</h3>
+      <p>Platform konten dengan CMS mudah dikelola, sistem kategori artikel, dan optimasi SEO untuk jangkauan maksimal.</p>
+    </div>
+    <div class="srv">
+      <div class="srv-num">04</div>
+      <div class="srv-icon">🎯</div>
+      <h3>Landing Page Konversi</h3>
+      <p>Halaman yang didesain khusus untuk mengkonversi pengunjung menjadi pelanggan dan meningkatkan penjualan bisnis.</p>
+    </div>
+    <div class="srv">
+      <div class="srv-num">05</div>
+      <div class="srv-icon">🔍</div>
+      <h3>Optimasi SEO</h3>
+      <p>Website mudah ditemukan di Google dengan teknik SEO modern, terstruktur, dan efektif untuk jangka panjang.</p>
+    </div>
+    <div class="srv">
+      <div class="srv-num">06</div>
+      <div class="srv-icon">🛠️</div>
+      <h3>Maintenance & Support</h3>
+      <p>Layanan perawatan rutin agar website selalu update, aman, dan berjalan mulus tanpa hambatan setiap saat.</p>
+    </div>
   </div>
 </div>
 
-<div class="div"></div>
-<div class="sw reveal" id="portfolio">
-  <div class="stag">Portfolio</div>
-  <h2 class="stitle">Hasil Karya<br>yang Kami Banggakan</h2>
-  <p class="ssub">Setiap project dikerjakan dengan penuh dedikasi — berikut beberapa yang sudah live.</p>
-  <div class="pg">
+<div class="divider"></div>
 
-    <!-- Card 1: Smart School -->
-    <div class="pc">
-      <div class="pph">
-        <!-- Browser chrome -->
-        <div class="browser-bar">
-          <div class="b-dots">
-            <div class="b-dot r"></div>
-            <div class="b-dot y"></div>
-            <div class="b-dot g"></div>
-          </div>
-          <div class="b-url">smart-school-management-portal...run.app</div>
+<!-- ══ PORTFOLIO ══ -->
+<div class="section reveal" id="portfolio">
+  <div class="section-header">
+    <div class="sec-eyebrow">Portfolio</div>
+    <h2 class="sec-title">Hasil Karya<br>yang Kami Banggakan</h2>
+    <p class="sec-sub">Setiap project dikerjakan dengan penuh dedikasi — berikut beberapa yang sudah live.</p>
+  </div>
+  <div class="portfolio-grid stagger">
+
+    <!-- Card 1 -->
+    <div class="port-card">
+      <div class="port-preview">
+        <div class="browser-chrome">
+          <div class="chrome-dots"><div class="cd r"></div><div class="cd y"></div><div class="cd g"></div></div>
+          <div class="chrome-url">smart-school-management-portal...run.app</div>
         </div>
-        <!-- Mockup screen -->
-        <div class="browser-screen">
-          <div class="mock-school">
-            <div class="m-nav">
-              <div class="m-logo"></div>
-              <div class="m-nav-links">
-                <div class="m-nl"></div>
-                <div class="m-nl"></div>
-                <div class="m-nl"></div>
-                <div class="m-nl"></div>
-              </div>
+        <div class="port-screen">
+          <div class="mock-sch">
+            <div class="ms-nav">
+              <div class="ms-logo"></div>
+              <div class="ms-links"><div class="ms-link"></div><div class="ms-link"></div><div class="ms-link"></div></div>
             </div>
-            <div class="m-hero">
-              <div class="m-badge">🎓 Smart School Management</div>
-              <div class="m-title">Portal Digital<br><span>Sekolah Modern</span></div>
-              <div class="m-cards">
-                <div class="m-card"></div>
-                <div class="m-card"></div>
-                <div class="m-card"></div>
-              </div>
+            <div class="ms-hero">
+              <div class="ms-badge">🎓 Smart School Management</div>
+              <div class="ms-title">Portal Digital <span>Sekolah Modern</span></div>
+              <div class="ms-cards"><div class="ms-card"></div><div class="ms-card"></div><div class="ms-card"></div></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="pb">
-        <div class="ptags"><span class="tag">School</span><span class="tag">Memories</span><span class="tag tag-live">● Live</span></div>
+      <div class="port-info">
+        <div class="port-tags"><span class="ptag">School</span><span class="ptag">Memories</span><span class="ptag ptag-live">● Live</span></div>
         <h3>Smart School Management</h3>
         <p>Platform digital untuk mengelola data informasi sekolah secara mudah dan terintegrasi.</p>
-        <a href="https://smart-school-management-portal-890360569623.asia-southeast1.run.app" target="_blank" class="plink" rel="noopener noreferrer">
+        <a href="https://smart-school-management-portal-890360569623.asia-southeast1.run.app" target="_blank" class="port-link" rel="noopener noreferrer">
           Kunjungi Website
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 13L13 3M13 3H7M13 3V9"/></svg>
         </a>
       </div>
     </div>
 
-    <!-- Card 2: Aclester Store -->
-    <div class="pc">
-      <div class="pph">
-        <div class="browser-bar">
-          <div class="b-dots">
-            <div class="b-dot r"></div>
-            <div class="b-dot y"></div>
-            <div class="b-dot g"></div>
-          </div>
-          <div class="b-url">aclesterstore.vercel.app</div>
+    <!-- Card 2 -->
+    <div class="port-card">
+      <div class="port-preview">
+        <div class="browser-chrome">
+          <div class="chrome-dots"><div class="cd r"></div><div class="cd y"></div><div class="cd g"></div></div>
+          <div class="chrome-url">aclesterstore.vercel.app</div>
         </div>
-        <div class="browser-screen">
-          <div class="mock-store">
-            <div class="m-nav">
-              <div class="m-logo">AclesterStore</div>
-              <div class="m-icons">
-                <div class="m-icon"></div>
-                <div class="m-icon"></div>
-              </div>
+        <div class="port-screen">
+          <div class="mock-str">
+            <div class="mst-nav">
+              <div class="mst-logo">AclesterStore</div>
+              <div class="mst-icons"><div class="mst-ico"></div><div class="mst-ico"></div></div>
             </div>
-            <div class="m-body">
-              <div class="m-banner">
-                <div class="m-banner-txt">🛒 Toko Online Terlengkap</div>
-              </div>
-              <div class="m-products">
-                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
-                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
-                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
-                <div class="m-prod"><div class="m-prod-img"></div><div class="m-prod-price"></div></div>
+            <div class="mst-body">
+              <div class="mst-banner">🛒 Toko Online Terlengkap</div>
+              <div class="mst-grid">
+                <div class="mst-prod"><div class="mst-img"></div><div class="mst-price"></div></div>
+                <div class="mst-prod"><div class="mst-img"></div><div class="mst-price"></div></div>
+                <div class="mst-prod"><div class="mst-img"></div><div class="mst-price"></div></div>
+                <div class="mst-prod"><div class="mst-img"></div><div class="mst-price"></div></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="pb">
-        <div class="ptags"><span class="tag">E-Commerce</span><span class="tag">Online Store</span><span class="tag tag-live">● Live</span></div>
+      <div class="port-info">
+        <div class="port-tags"><span class="ptag">E-Commerce</span><span class="ptag">Online Store</span><span class="ptag ptag-live">● Live</span></div>
         <h3>Aclester Store — Toko Online</h3>
-        <p>Platform belanja online lengkap dengan katalog produk, sistem keranjang belanja, dan pengalaman belanja yang mulus.</p>
-        <a href="https://aclesterstore.vercel.app/" target="_blank" class="plink" rel="noopener noreferrer">
+        <p>Platform belanja online dengan katalog produk, sistem keranjang, dan pengalaman belanja yang mulus.</p>
+        <a href="https://aclesterstore.vercel.app/" target="_blank" class="port-link" rel="noopener noreferrer">
           Kunjungi Website
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 13L13 3M13 3H7M13 3V9"/></svg>
         </a>
       </div>
     </div>
 
-    <!-- Card 3: Coming Soon -->
-    <div class="pc">
-      <div class="pph">
-        <div class="browser-bar">
-          <div class="b-dots">
-            <div class="b-dot r"></div>
-            <div class="b-dot y"></div>
-            <div class="b-dot g"></div>
-          </div>
-          <div class="b-url">yourcompany.aclester.dev</div>
+    <!-- Card 3 -->
+    <div class="port-card">
+      <div class="port-preview">
+        <div class="browser-chrome">
+          <div class="chrome-dots"><div class="cd r"></div><div class="cd y"></div><div class="cd g"></div></div>
+          <div class="chrome-url">yourcompany.aclester.dev</div>
         </div>
-        <div class="browser-screen">
-          <div class="mock-company">
-            <div class="m-logo-big">
-              <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.5 27.5 L19 11 L25.5 27.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <path d="M15 22.5 L23 22.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-              </svg>
+        <div class="port-screen">
+          <div class="mock-co">
+            <div class="mco-logo">
+              <svg viewBox="0 0 38 38" fill="none"><path d="M12.5 27.5 L19 11 L25.5 27.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M15 22.5 L23 22.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
             </div>
-            <div class="m-cs-title">Company Profile</div>
-            <div class="m-cs-sub">Premium • Modern • SEO-Ready</div>
-            <div class="m-bar"></div>
-            <div class="m-dots-row">
-              <div class="m-dot-sm a"></div>
-              <div class="m-dot-sm"></div>
-              <div class="m-dot-sm"></div>
-            </div>
+            <div class="mco-name">Company Profile</div>
+            <div class="mco-sub">Premium · Modern · SEO-Ready</div>
+            <div class="mco-bar"></div>
+            <div class="mco-pills"><span class="mco-pill">SEO</span><span class="mco-pill">Fast</span><span class="mco-pill">Mobile</span></div>
           </div>
         </div>
       </div>
-      <div class="pb">
-        <div class="ptags"><span class="tag">Company Profile</span><span class="tag">Business</span></div>
+      <div class="port-info">
+        <div class="port-tags"><span class="ptag">Company Profile</span><span class="ptag">Business</span></div>
         <h3>Company Profile — Coming Soon</h3>
         <p>Website company profile dengan desain premium, animasi halus, dan struktur konten yang membangun kepercayaan.</p>
-        <a href="#contact" class="plink">Pesan Sekarang <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 13L13 3M13 3H7M13 3V9"/></svg></a>
+        <a href="#contact" class="port-link">
+          Pesan Sekarang
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 13L13 3M13 3H7M13 3V9"/></svg>
+        </a>
       </div>
     </div>
 
   </div>
 </div>
 
-<div class="div"></div>
-<div class="sw reveal">
-  <div class="stag">Keunggulan Kami</div>
-  <h2 class="stitle">Kenapa Pilih<br>Aclester?</h2>
-  <p class="ssub">Bukan cuma bikin website — kami memastikan website kamu benar-benar bekerja keras untuk bisnis kamu.</p>
-  <div class="wg">
-    <div class="wc"><div class="wi">⚡</div><h4>Cepat & On-Time</h4><p>Selesai dalam 3–7 hari kerja dengan kualitas terjamin dan proses yang transparan dari awal hingga akhir.</p></div>
-    <div class="wc"><div class="wi">🎨</div><h4>Desain Kustom & Unik</h4><p>Setiap website kami desain dari nol, disesuaikan dengan brand identity dan target audiens kamu.</p></div>
-    <div class="wc"><div class="wi">📱</div><h4>Responsive Semua Device</h4><p>Tampil sempurna di desktop, tablet, dan HP tanpa kompromi pada estetika maupun fungsionalitas.</p></div>
-    <div class="wc"><div class="wi">🔒</div><h4>SSL & Keamanan Terjamin</h4><p>Setiap website dilengkapi SSL gratis dan sistem keamanan modern agar data bisnis kamu tetap aman.</p></div>
-    <div class="wc"><div class="wi">📈</div><h4>SEO-Friendly dari Awal</h4><p>Struktur kode dan konten yang dioptimalkan untuk mesin pencari — siap bersaing di halaman pertama Google.</p></div>
-    <div class="wc"><div class="wi">💬</div><h4>Support Responsif via WA</h4><p>Punya pertanyaan atau butuh revisi? Tim kami siap membantu kapan saja lewat WhatsApp dengan cepat.</p></div>
+<div class="divider"></div>
+
+<!-- ══ WHY US ══ -->
+<div class="section reveal" id="why">
+  <div class="section-header">
+    <div class="sec-eyebrow">Keunggulan Kami</div>
+    <h2 class="sec-title">Kenapa Pilih Aclester?</h2>
+    <p class="sec-sub">Bukan cuma bikin website — kami memastikan website kamu benar-benar bekerja keras untuk bisnis kamu.</p>
   </div>
-  <div class="tech-row">
-    <span class="tp">HTML5</span><span class="tp">CSS3</span><span class="tp">JavaScript</span>
-    <span class="tp">React.js</span><span class="tp">Next.js</span><span class="tp">Tailwind CSS</span>
-    <span class="tp">WordPress</span><span class="tp">Node.js</span><span class="tp">Vercel</span>
-    <span class="tp">MySQL</span><span class="tp">Firebase</span><span class="tp">Figma</span>
+  <div class="why-grid stagger">
+    <div class="why-card"><div class="wc-num">01</div><div class="wc-icon">⚡</div><h4>Cepat & On-Time</h4><p>Selesai dalam 3–7 hari kerja dengan kualitas terjamin dan proses yang transparan dari awal hingga akhir.</p></div>
+    <div class="why-card"><div class="wc-num">02</div><div class="wc-icon">🎨</div><h4>Desain Kustom & Unik</h4><p>Setiap website kami desain dari nol, disesuaikan dengan brand identity dan target audiens kamu.</p></div>
+    <div class="why-card"><div class="wc-num">03</div><div class="wc-icon">📱</div><h4>Responsive Semua Device</h4><p>Tampil sempurna di desktop, tablet, dan HP tanpa kompromi pada estetika maupun fungsionalitas.</p></div>
+    <div class="why-card"><div class="wc-num">04</div><div class="wc-icon">🔒</div><h4>SSL & Keamanan Terjamin</h4><p>Setiap website dilengkapi SSL gratis dan sistem keamanan modern agar data bisnis kamu tetap aman.</p></div>
+    <div class="why-card"><div class="wc-num">05</div><div class="wc-icon">📈</div><h4>SEO-Friendly dari Awal</h4><p>Struktur kode dan konten dioptimalkan untuk mesin pencari — siap bersaing di halaman pertama Google.</p></div>
+    <div class="why-card"><div class="wc-num">06</div><div class="wc-icon">💬</div><h4>Support Responsif via Instagram</h4><p>Punya pertanyaan atau butuh revisi? Tim kami siap membantu kapan saja lewat Instagram dengan cepat.</p></div>
+  </div>
+  <div class="tech-strip">
+    <span class="tech-pill">HTML5</span><span class="tech-pill">CSS3</span><span class="tech-pill">JavaScript</span>
+    <span class="tech-pill">React.js</span><span class="tech-pill">Next.js</span><span class="tech-pill">Tailwind CSS</span>
+    <span class="tech-pill">WordPress</span><span class="tech-pill">Node.js</span><span class="tech-pill">Vercel</span>
+    <span class="tech-pill">MySQL</span><span class="tech-pill">Firebase</span><span class="tech-pill">Figma</span>
   </div>
 </div>
 
-<div class="div"></div>
-<div class="sw reveal" id="process">
-  <div class="stag">Cara Kerja</div>
-  <h2 class="stitle">Prosesnya Mudah,<br>Hasilnya Maksimal</h2>
-  <p class="ssub">4 langkah simpel dari kamu hubungi kami sampai website siap live dan bisa diakses dunia.</p>
-  <div class="prg">
-    <div class="prc" data-n="01"><div class="step-badge">STEP 01</div><h4>Konsultasi Gratis</h4><p>Ceritakan kebutuhan, target pasar, dan visi website bisnismu. Kami dengarkan semua tanpa biaya apapun.</p></div>
-    <div class="prc" data-n="02"><div class="step-badge">STEP 02</div><h4>Desain UI/UX</h4><p>Tim kami merancang tampilan yang modern, sesuai brand kamu, dan enak digunakan oleh pengunjung.</p></div>
-    <div class="prc" data-n="03"><div class="step-badge">STEP 03</div><h4>Development</h4><p>Website dikerjakan dengan teknologi terkini — cepat loading, aman, SEO-ready, dan sepenuhnya responsif.</p></div>
-    <div class="prc" data-n="04"><div class="step-badge">STEP 04</div><h4>Launch & Pendampingan</h4><p>Website go live! Kami terus mendampingi dengan after-sales support yang siap kapan pun kamu butuhkan.</p></div>
+<div class="divider"></div>
+
+<!-- ══ PROCESS ══ -->
+<div class="section reveal" id="process">
+  <div class="section-header">
+    <div class="sec-eyebrow">Cara Kerja</div>
+    <h2 class="sec-title">4 Langkah Simpel<br>Menuju Website Impian</h2>
+    <p class="sec-sub">Dari kamu hubungi kami sampai website siap live dan bisa diakses seluruh dunia.</p>
+  </div>
+  <div class="process-track stagger">
+    <div class="proc-step">
+      <div class="proc-num-wrap"><div class="proc-num">01</div></div>
+      <h4>Konsultasi Gratis</h4>
+      <p>Ceritakan kebutuhan, target pasar, dan visi website bisnis kamu. Kami dengarkan semua tanpa biaya.</p>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num-wrap"><div class="proc-num">02</div></div>
+      <h4>Desain UI/UX</h4>
+      <p>Tim kami merancang tampilan yang modern, sesuai brand kamu, dan enak digunakan oleh pengunjung.</p>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num-wrap"><div class="proc-num">03</div></div>
+      <h4>Development</h4>
+      <p>Website dikerjakan dengan teknologi terkini — cepat loading, aman, SEO-ready, dan sepenuhnya responsif.</p>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num-wrap"><div class="proc-num">04</div></div>
+      <h4>Launch & Support</h4>
+      <p>Website go live! Kami terus mendampingi dengan after-sales support yang siap kapan pun dibutuhkan.</p>
+    </div>
   </div>
 </div>
 
-<div id="contact" class="ctaw reveal">
-  <div class="cta-orb"></div>
-  <div class="cta-box">
-    <div class="stag" style="justify-content:center;margin-bottom:1rem">Yuk, Mulai Sekarang!</div>
+<!-- ══ CTA ══ -->
+<div class="cta-section reveal" id="contact">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="cta-eyebrow">✦ Mulai Sekarang</div>
     <h2>Siap Punya Website<br>yang Keren?</h2>
-    <p>Konsultasi gratis, harga transparan, dan hasil yang bikin kamu bangga. Hubungi kami via WhatsApp sekarang — tim kami siap melayani!</p>
-    <a href="https://wa.me/6285259177080?text=Halo%20Aclester%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website" target="_blank" class="btn-wa">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      Chat via WhatsApp — Gratis!
+    <p>Konsultasi gratis, harga transparan, dan hasil yang bikin kamu bangga. Hubungi kami via Instagram — tim kami siap melayani!</p>
+    <a href="https://instagram.com/ibnabayy" target="_blank" class="btn-wa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      DM via Instagram — Gratis!
     </a>
   </div>
 </div>
 
-<footer>
-  <div class="fb">
-    <div class="brow">
-      <svg width="30" height="30" viewBox="0 0 38 38" fill="none">
-        <defs><linearGradient id="fg" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e8192c"/><stop offset="100%" stop-color="#ff6b3d"/></linearGradient></defs>
-        <path d="M19 3 L33.5 11 L33.5 27 L19 35 L4.5 27 L4.5 11 Z" fill="url(#fg)" opacity="0.12" stroke="url(#fg)" stroke-width="1.3"/>
-        <path d="M12.5 27.5 L19 11 L25.5 27.5" stroke="url(#fg)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M15 22.5 L23 22.5" stroke="url(#fg)" stroke-width="2.4" stroke-linecap="round"/>
-        <circle cx="27.5" cy="10.5" r="2.8" fill="url(#fg)"/>
-      </svg>
-      <span class="bn">Aclester<em>.</em></span>
+<!-- ══ FOOTER ══ -->
+<div class="footer-wrap">
+  <div class="footer-main">
+    <div class="footer-col">
+      <div class="fb-brand">
+        <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
+          <defs><linearGradient id="fg2" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e8192c"/><stop offset="100%" stop-color="#ff6b3d"/></linearGradient></defs>
+          <path d="M17 2.5 L29.5 9.75 L29.5 24.25 L17 31.5 L4.5 24.25 L4.5 9.75 Z" fill="url(#fg2)" opacity="0.15" stroke="url(#fg2)" stroke-width="1.2"/>
+          <path d="M11 25 L17 11 L23 25" stroke="url(#fg2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M13.5 20.5 L20.5 20.5" stroke="url(#fg2)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="24.5" cy="9.5" r="2.5" fill="url(#fg2)"/>
+        </svg>
+        <span class="fb-name">Aclester<em>.</em></span>
+      </div>
+      <p>Jasa pembuatan website profesional, modern, dan SEO-friendly untuk bisnis kamu berkembang di era digital.</p>
     </div>
-    <p>Jasa pembuatan website profesional, modern, dan SEO-friendly untuk bisnis kamu berkembang di era digital.</p>
+    <div class="footer-col">
+      <h5>Layanan</h5>
+      <ul>
+        <li><a href="#services">Company Profile</a></li>
+        <li><a href="#services">Landing Page</a></li>
+        <li><a href="#services">Blog & Berita</a></li>
+        <li><a href="#services">Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Bantuan</h5>
+      <ul>
+        <li><a href="#contact">FAQ</a></li>
+        <li><a href="#contact">Privasi</a></li>
+        <li><a href="#contact">S&amp;K</a></li>
+        <li><a href="https://instagram.com/ibnabayy">Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Kontak</h5>
+      <ul>
+        <li><a href="https://instagram.com/ibnabayy">Instagram</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="fc"><h5>Layanan</h5><ul><li><a href="#services">Company Profile</a></li><li><a href="#services">Landing Page</a></li><li><a href="#services">Blog & Berita</a></li><li><a href="#services">Maintenance</a></li></ul></div>
-  <div class="fc"><h5>Bantuan</h5><ul><li><a href="#contact">FAQ</a></li><li><a href="#contact">Privasi</a></li><li><a href="#contact">S&K</a></li><li><a href="https://wa.me/6285259177080">Support</a></li></ul></div>
-  <div class="fc"><h5>Kontak</h5><ul><li><a href="https://wa.me/6285259177080">WhatsApp</a></li></ul></div>
-</footer>
-<div class="fbot">
-  <span>© 2025 <span class="rr">Aclester</span> — All Rights Reserved</span>
+  <div class="footer-bottom">
+    <span>© 2025 <span class="rr">Aclester</span> — All Rights Reserved</span>
+    <span class="mono">Made with ♥ in Indonesia</span>
+  </div>
 </div>
 
 <script>
-const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
-hb.addEventListener('click',()=>nl.classList.toggle('open'));
-nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Nav scroll
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>30);
+},{ passive:true });
+
+// Hamburger
+const hb=document.getElementById('hamburger');
+const mm=document.getElementById('mobileMenu');
+hb.addEventListener('click',()=>{
+  hb.classList.toggle('active');
+  mm.classList.toggle('open');
+  document.body.style.overflow=mm.classList.contains('open')?'hidden':'';
+});
+function closeMobile(){
+  hb.classList.remove('active');
+  mm.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Reveal on scroll
+const revealEls=document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.stagger');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
