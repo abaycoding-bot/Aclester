@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aclester Store — Marketplace Jasa Digital</title>
+<meta name="description" content="Aclester Store — belanja jasa website, edit foto/video, desain grafis, joki tugas, dan konten sosial media seperti belanja online: pilih, masukkan keranjang, checkout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06070d;
+  --bg2:#0b0d18;
+  --surface:rgba(255,255,255,.045);
+  --surface2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.09);
+  --border2:rgba(255,255,255,.16);
+  --text:#eef0fb;
+  --muted:#8d90ac;
+  --muted2:#61637f;
+  --violet:#7c5cff;
+  --violet2:#9b82ff;
+  --cyan:#34e0ce;
+  --gold:#ffb84d;
+  --grad:linear-gradient(135deg,#7c5cff 0%,#34e0ce 100%);
+  --grad-soft:linear-gradient(135deg,rgba(124,92,255,.16),rgba(52,224,206,.10));
+  --f-display:'Space Grotesk',sans-serif;
+  --f-body:'Inter',sans-serif;
+  --f-mono:'Space Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--f-body);
+  font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit}
+button{font-family:inherit}
+.wrap{max-width:1220px;margin:0 auto;padding-inline:clamp(1.4rem,4vw,2.5rem)}
+::selection{background:var(--violet);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--violet);border-radius:3px}
+
+.bg-glow{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(700px 500px at 15% -5%,rgba(124,92,255,.16),transparent 60%),
+    radial-gradient(650px 500px at 100% 20%,rgba(52,224,206,.10),transparent 60%),
+    var(--bg);
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:600;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1.4rem,4vw,2.5rem);
+  background:rgba(6,7,13,.7);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid var(--border);transition:background .3s;
+}
+nav.scrolled{background:rgba(6,7,13,.92)}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none}
+.brand-mark{width:34px;height:34px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;color:#06070d;font-size:1.05rem;flex-shrink:0}
+.brand-word{font-family:var(--f-display);font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+.brand-word span{color:var(--cyan)}
+.nav-links{display:flex;gap:.1rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.86rem;font-weight:500;padding:.5rem .9rem;border-radius:8px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-right{display:flex;align-items:center;gap:.7rem}
+.icon-btn{
+  width:40px;height:40px;border-radius:10px;background:var(--surface);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;color:var(--text);
+  transition:background .2s,border-color .2s;
+}
+.icon-btn:hover{background:var(--surface2);border-color:var(--border2)}
+.cart-badge{
+  position:absolute;top:-5px;right:-5px;background:var(--grad);color:#06070d;font-family:var(--f-mono);
+  font-size:.62rem;font-weight:700;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;
+}
+.btn-buy{
+  display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#06070d;
+  padding:.6rem 1.3rem;border-radius:10px;font-weight:700;font-size:.86rem;text-decoration:none;border:none;cursor:pointer;
+  transition:transform .2s var(--ease),filter .2s;
+}
+.btn-buy:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{width:20px;height:1.5px;background:var(--text);transition:.25s}
+.burger.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.on span:nth-child(2){opacity:0}
+.burger.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-nav{display:none;position:fixed;inset:72px 0 0 0;z-index:590;background:rgba(6,7,13,.98);padding:2rem 1.4rem;flex-direction:column;gap:.2rem}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--text);text-decoration:none;font-family:var(--f-display);font-size:1.25rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+
+/* ============ HERO ============ */
+.hero{min-height:100svh;display:flex;align-items:center;padding:8rem 0 3rem;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.72rem;
+  color:var(--cyan);letter-spacing:.04em;border:1px solid var(--border2);border-radius:20px;
+  padding:.4rem .9rem;margin-bottom:1.7rem;background:var(--surface);
+}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.hero h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.3rem,4.6vw,3.9rem);line-height:1.06;letter-spacing:-.03em;margin-bottom:1.4rem}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{color:var(--muted);font-size:1.03rem;max-width:460px;margin-bottom:2rem;line-height:1.85}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#06070d;
+  padding:.85rem 1.7rem;border-radius:12px;font-weight:700;font-size:.92rem;text-decoration:none;border:none;cursor:pointer;
+  transition:transform .25s var(--ease),filter .2s;box-shadow:0 8px 30px rgba(124,92,255,.25);
+}
+.btn-primary:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;background:var(--surface);color:var(--text);
+  padding:.85rem 1.7rem;border-radius:12px;font-weight:600;font-size:.92rem;text-decoration:none;
+  border:1px solid var(--border2);transition:border-color .25s,transform .25s var(--ease);
+}
+.btn-outline:hover{border-color:var(--violet2);transform:translateY(-3px)}
+.hero-trust{display:flex;gap:1.6rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted)}
+.trust-item .ti-num{font-family:var(--f-display);font-weight:700;color:var(--text)}
+
+.hero-visual{position:relative;height:460px}
+#hero3d{position:absolute;inset:0;width:100%;height:100%}
+.float-chip{
+  position:absolute;background:var(--surface2);backdrop-filter:blur(14px);border:1px solid var(--border2);
+  border-radius:14px;padding:.8rem 1.05rem;display:flex;align-items:center;gap:10px;font-size:.82rem;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);pointer-events:none;transition:transform .15s ease-out;
+}
+.chip-1{top:8%;left:2%}
+.chip-2{bottom:14%;right:0%}
+.chip-3{top:46%;left:-4%}
+.fc-star{color:var(--gold);font-size:.95rem}
+.fc-strong{font-family:var(--f-display);font-weight:700}
+
+/* ============ SECTION SHARED ============ */
+.section{padding:5.5rem 0}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:.7rem;display:block}
+.sec-title{font-family:var(--f-display);font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.sec-sub{color:var(--muted);max-width:400px;font-size:.92rem}
+
+/* ============ CATEGORY CHIPS ============ */
+.cat-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.2rem}
+.cat-tab{
+  padding:.55rem 1.1rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);
+  font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;
+}
+.cat-tab:hover{color:var(--text)}
+.cat-tab.active{background:var(--grad-soft);border-color:var(--violet2);color:var(--text)}
+
+/* ============ PRODUCT GRID ============ */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.prod-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;
+  transition:border-color .3s,box-shadow .3s;position:relative;transform-style:preserve-3d;perspective:800px;
+}
+.prod-card:hover{border-color:var(--border2);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.prod-card.hide{display:none}
+.prod-top{padding:1.3rem 1.3rem 0;display:flex;justify-content:space-between;align-items:flex-start}
+.prod-badge{font-family:var(--f-mono);font-size:.62rem;padding:3px 9px;border-radius:6px;background:rgba(255,184,77,.12);color:var(--gold);border:1px solid rgba(255,184,77,.28);text-transform:uppercase;letter-spacing:.03em}
+.prod-badge.new{background:rgba(52,224,206,.12);color:var(--cyan);border-color:rgba(52,224,206,.28)}
+.prod-rating{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--muted)}
+.prod-rating .st{color:var(--gold)}
+.prod-visual{
+  height:130px;margin:1rem 1.3rem;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;position:relative;overflow:hidden;
+}
+.prod-visual::before{content:'';position:absolute;inset:0;background:var(--grad-soft)}
+.prod-visual span{position:relative;z-index:1;filter:drop-shadow(0 6px 16px rgba(0,0,0,.4))}
+.prod-body{padding:0 1.3rem 1.4rem}
+.prod-body h3{font-family:var(--f-display);font-size:1.05rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em}
+.prod-body p{color:var(--muted);font-size:.83rem;margin-bottom:1.1rem;line-height:1.7;min-height:2.4em}
+.prod-foot{display:flex;justify-content:space-between;align-items:center}
+.prod-price{font-family:var(--f-display);font-weight:700;font-size:1.05rem}
+.prod-price small{display:block;font-family:var(--f-mono);font-weight:400;font-size:.65rem;color:var(--muted2);text-decoration:none}
+.btn-add{
+  display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);
+  padding:.55rem 1rem;border-radius:9px;font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s;
+}
+.btn-add:hover{background:var(--grad);color:#06070d;border-color:transparent}
+.btn-add.added{background:var(--grad);color:#06070d;border-color:transparent}
+
+/* ============ TRUST STRIP ============ */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.trust-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.7rem}
+.trust-icon{width:42px;height:42px;border-radius:11px;background:var(--grad-soft);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem}
+.trust-card h4{font-family:var(--f-display);font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.trust-card p{color:var(--muted);font-size:.83rem;line-height:1.7}
+
+/* ============ REVIEWS ============ */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.review-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem}
+.review-stars{color:var(--gold);font-size:.9rem;margin-bottom:.9rem;letter-spacing:2px}
+.review-card p{font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:1.1rem}
+.review-who{display:flex;align-items:center;gap:10px}
+.review-avatar{width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;color:#06070d;font-size:.8rem}
+.rw-name{font-size:.83rem;font-weight:600}
+.rw-role{font-size:.74rem;color:var(--muted)}
+
+/* ============ CTA ============ */
+.cta-box{
+  border:1px solid var(--border2);border-radius:22px;padding:3.6rem clamp(1.5rem,5vw,4rem);text-align:center;
+  background:var(--grad-soft);position:relative;overflow:hidden;
+}
+.cta-box h2{font-family:var(--f-display);font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:700;letter-spacing:-.02em;margin-bottom:1rem}
+.cta-box p{color:var(--muted);max-width:440px;margin:0 auto 1.8rem}
+.cta-actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--border);padding:3rem 0 2rem;margin-top:2rem}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:2.2rem}
+.foot-brand p{color:var(--muted);font-size:.84rem;margin-top:.8rem;max-width:270px;line-height:1.75}
+.foot-cols{display:flex;gap:3.2rem;flex-wrap:wrap}
+.foot-col h5{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.foot-col a{display:block;color:var(--text);text-decoration:none;font-size:.85rem;margin-bottom:.6rem;opacity:.85}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.6rem;border-top:1px solid var(--border);font-family:var(--f-mono);font-size:.72rem;color:var(--muted2)}
+
+/* ============ CART DRAWER ============ */
+.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:800;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-backdrop.open{opacity:1;pointer-events:auto}
+.cart-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);z-index:900;background:var(--bg2);
+  border-left:1px solid var(--border2);transform:translateX(100%);transition:transform .4s var(--ease);
+  display:flex;flex-direction:column;
+}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{padding:1.4rem 1.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.cart-head h3{font-family:var(--f-display);font-size:1.1rem;font-weight:700}
+.cart-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.3rem;line-height:1}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{color:var(--muted);font-size:.88rem;text-align:center;padding:3rem 1rem}
+.cart-item{display:flex;gap:12px;padding:.9rem 0;border-bottom:1px solid var(--border)}
+.ci-icon{width:44px;height:44px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ci-info{flex:1}
+.ci-info h5{font-size:.87rem;font-weight:600;margin-bottom:.2rem}
+.ci-info span{font-family:var(--f-mono);font-size:.78rem;color:var(--cyan)}
+.ci-remove{background:none;border:none;color:var(--muted2);cursor:pointer;font-size:.78rem;text-decoration:underline;margin-top:.3rem}
+.cart-foot{padding:1.4rem 1.5rem;border-top:1px solid var(--border)}
+.cart-total{display:flex;justify-content:space-between;font-family:var(--f-display);font-weight:700;font-size:1.1rem;margin-bottom:1rem}
+.cart-checkout{width:100%;justify-content:center}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.show{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+@media (max-width:980px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-visual{height:320px;order:-1}
+  .trust-grid,.prod-grid,.review-grid{grid-template-columns:repeat(2,1fr)}
+  .float-chip{display:none}
+}
+@media (max-width:640px){
+  .trust-grid,.prod-grid,.review-grid{grid-template-columns:1fr}
+  .section{padding:4rem 0}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<nav id="nav">
+  <a href="#" class="brand">
+    <span class="brand-mark">A</span>
+    <span class="brand-word">Aclester<span>.store</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#kenapa">Kenapa Kami</a></li>
+    <li><a href="#ulasan">Ulasan</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="icon-btn" id="cartBtn" aria-label="Keranjang">
+      🛒<span class="cart-badge" id="cartBadge">0</span>
+    </button>
+    <a href="#produk" class="btn-buy">Belanja</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#produk">Produk</a>
+  <a href="#kenapa">Kenapa Kami</a>
+  <a href="#ulasan">Ulasan</a>
+  <a href="#kontak">Kontak</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill">🛍️ Marketplace Jasa Digital</span>
+      <h1>Belanja jasa digital,<br><span class="grad-text">semudah checkout online.</span></h1>
+      <p class="hero-desc">Pilih layanan yang kamu butuhkan, masukkan keranjang, lalu checkout langsung ke WhatsApp kami. Website, edit foto/video, desain, joki tugas, sampai konten sosial media — semua dalam satu etalase.</p>
+      <div class="hero-actions">
+        <a href="#produk" class="btn-primary">Lihat Semua Produk</a>
+        <a href="#proses" class="btn-outline">Cara Kerja →</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="ti-num">240+</span> pesanan selesai</div>
+        <div class="trust-item"><span class="ti-num">4.9</span> / 5 rating</div>
+        <div class="trust-item"><span class="ti-num">&lt;2j</span> respon chat</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <canvas id="hero3d"></canvas>
+      <div class="float-chip chip-1"><span class="fc-star">★★★★★</span></div>
+      <div class="float-chip chip-2"><span class="fc-strong">240+</span> proyek tayang</div>
+      <div class="float-chip chip-3">🔒 <span>Aman &amp; original</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUK ============ -->
+<section class="section" id="produk">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Etalase</span><h2 class="sec-title">Pilih layanan yang kamu perlu</h2></div>
+      <p class="sec-sub">Masukkan ke keranjang, lalu checkout kapan saja — kami hubungi via WhatsApp untuk detail akhir.</p>
+    </div>
+    <div class="cat-tabs reveal" id="catTabs">
+      <button class="cat-tab active" data-cat="all">Semua</button>
+      <button class="cat-tab" data-cat="web">Website</button>
+      <button class="cat-tab" data-cat="edit">Edit Foto/Video</button>
+      <button class="cat-tab" data-cat="desain">Desain</button>
+      <button class="cat-tab" data-cat="akademik">Akademik</button>
+      <button class="cat-tab" data-cat="sosmed">Sosial Media</button>
+    </div>
+    <div class="prod-grid reveal" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ============ KENAPA ============ -->
+<section class="section" id="kenapa">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Kenapa Belanja di Sini</span><h2 class="sec-title">Bukan sekadar toko, tetap studio</h2></div>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-card"><div class="trust-icon">⚡</div><h4>Respon Cepat</h4><p>Chat dibalas rata-rata di bawah 2 jam, termasuk malam hari.</p></div>
+      <div class="trust-card"><div class="trust-icon">🔁</div><h4>Revisi Wajar</h4><p>Revisi ringan selama masih sesuai pesanan awal, tanpa biaya tambahan.</p></div>
+      <div class="trust-card"><div class="trust-icon">💳</div><h4>Bayar Setelah Deal</h4><p>Detail dan harga disepakati dulu sebelum pembayaran, tidak ada biaya tersembunyi.</p></div>
+      <div class="trust-card"><div class="trust-icon">✅</div><h4>100% Original</h4><p>Semua dikerjakan dari nol sesuai kebutuhanmu, bukan template asal tempel.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ULASAN ============ -->
+<section class="section" id="ulasan">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Ulasan Pembeli</span><h2 class="sec-title">Kata mereka yang sudah checkout</h2></div>
+    </div>
+    <div class="review-grid reveal">
+      <div class="review-card"><div class="review-stars">★★★★★</div><p>"Prosesnya kayak belanja online beneran — tinggal pilih, checkout, terus tinggal tunggu progres."</p><div class="review-who"><div class="review-avatar">R</div><div><div class="rw-name">Rina S.</div><div class="rw-role">Pemilik Toko Rajut</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p>"Edit video reels-nya cepat dan hasilnya rapi, langsung saya unggah tanpa perlu edit ulang."</p><div class="review-who"><div class="review-avatar">D</div><div><div class="rw-name">Dimas A.</div><div class="rw-role">Content Creator</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★☆</div><p>"Logo dan feed Instagram toko saya sekarang terlihat jauh lebih niat dan konsisten."</p><div class="review-who"><div class="review-avatar">N</div><div><div class="rw-name">Nadia P.</div><div class="rw-role">Owner Kedai Kopi</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section" id="kontak">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h2>Sudah pilih layanan? <span class="grad-text">Checkout sekarang.</span></h2>
+      <p>Cek keranjangmu di pojok kanan atas, atau langsung chat kami untuk kebutuhan yang belum ada di etalase.</p>
+      <div class="cta-actions">
+        <button class="btn-primary" onclick="openCart()">Buka Keranjang</button>
+        <a href="https://wa.me/6281234567890" class="btn-outline">Chat Langsung</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand-word">Aclester<span>.store</span></span>
+        <p>Marketplace jasa digital untuk website, edit foto/video, desain grafis, joki tugas, dan konten sosial media.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h5>Produk</h5><a href="#produk">Website</a><a href="#produk">Edit Foto/Video</a><a href="#produk">Desain</a><a href="#produk">Akademik</a></div>
+        <div class="foot-col"><h5>Studio</h5><a href="#kenapa">Kenapa Kami</a><a href="#ulasan">Ulasan</a></div>
+        <div class="foot-col"><h5>Kontak</h5><a href="https://wa.me/6281234567890">WhatsApp</a><a href="mailto:halo@aclester.com">Email</a><a href="#">Instagram</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Aclester Store</span><span>Belanja jasa, sepraktis belanja online.</span></div>
+  </div>
+</footer>
+
+<div class="cart-backdrop" id="cartBackdrop" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h3>Keranjang</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Keranjang masih kosong. Tambahkan layanan dari etalase.</div></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">Rp0</span></div>
+    <button class="btn-primary cart-checkout" onclick="checkout()">Checkout via WhatsApp</button>
+  </div>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ---------- NAV ---------- */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>10));
+const burger=document.getElementById('burger'), mobileNav=document.getElementById('mobileNav');
+burger.addEventListener('click',()=>{burger.classList.toggle('on');mobileNav.classList.toggle('open')});
+mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('on');mobileNav.classList.remove('open')}));
+
+/* ---------- REVEAL ---------- */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- PRODUCTS ---------- */
+const products=[
+  {id:'web-lp',cat:'web',icon:'💻',name:'Landing Page',desc:'Satu halaman promosi produk/acara, siap konversi.',price:150000,rating:5,badge:'Terlaris'},
+  {id:'web-toko',cat:'web',icon:'🛒',name:'Website Toko Online',desc:'Katalog produk lengkap dengan checkout WhatsApp.',price:450000,rating:5,badge:'Terlaris'},
+  {id:'web-profil',cat:'web',icon:'🏢',name:'Company Profile',desc:'Profil usaha/organisasi lengkap dengan portofolio.',price:350000,rating:4.8},
+  {id:'edit-reels',cat:'edit',icon:'🎬',name:'Edit Video Reels',desc:'Potong, transisi, dan caption otomatis siap unggah.',price:35000,rating:4.9,badge:'Terlaris'},
+  {id:'edit-foto',cat:'edit',icon:'🖼️',name:'Retouch Foto Produk',desc:'Background bersih dan warna konsisten untuk katalog.',price:10000,rating:4.8},
+  {id:'edit-doku',cat:'edit',icon:'📹',name:'Edit Dokumentasi Acara',desc:'Highlight video acara dari rekaman mentah.',price:120000,rating:4.7},
+  {id:'desain-logo',cat:'desain',icon:'🏷️',name:'Logo &amp; Brand Kit',desc:'Logo, warna, dan font untuk identitas usaha baru.',price:100000,rating:4.9,badge:'Baru'},
+  {id:'desain-feed',cat:'desain',icon:'🎨',name:'Template Feed Instagram',desc:'Set template Canva yang bisa dipakai berulang.',price:75000,rating:4.8},
+  {id:'desain-banner',cat:'desain',icon:'🪧',name:'Banner &amp; Spanduk',desc:'Untuk acara, toko, atau promo, siap cetak.',price:25000,rating:4.6},
+  {id:'akademik-laporan',cat:'akademik',icon:'📝',name:'Bantuan Laporan/Tugas',desc:'Dikerjakan dan dijelaskan ulang biar kamu paham isinya.',price:50000,rating:4.9},
+  {id:'akademik-slide',cat:'akademik',icon:'📊',name:'Slide Presentasi',desc:'Desain PPT rapi untuk sidang, seminar, atau pitching.',price:40000,rating:4.8},
+  {id:'sosmed-kalender',cat:'sosmed',icon:'📅',name:'Kalender Konten Bulanan',desc:'Rencana 30 hari lengkap dengan ide caption.',price:150000,rating:4.7,badge:'Baru'},
+];
+
+const prodGrid=document.getElementById('prodGrid');
+function starRow(r){
+  const full=Math.round(r);
+  return '★★★★★'.slice(0,full)+'☆☆☆☆☆'.slice(0,5-full);
+}
+function fmt(n){return 'Rp'+n.toLocaleString('id-ID')}
+
+function renderProducts(){
+  prodGrid.innerHTML=products.map(p=>`
+    <div class="prod-card" data-cat="${p.cat}">
+      <div class="prod-top">
+        ${p.badge?`<span class="prod-badge ${p.badge==='Baru'?'new':''}">${p.badge}</span>`:'<span></span>'}
+        <span class="prod-rating"><span class="st">★</span> ${p.rating}</span>
+      </div>
+      <div class="prod-visual"><span>${p.icon}</span></div>
+      <div class="prod-body">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <div class="prod-foot">
+          <div class="prod-price">${fmt(p.price)}<small>mulai dari</small></div>
+          <button class="btn-add" data-id="${p.id}">+ Keranjang</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  prodGrid.querySelectorAll('.btn-add').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      addToCart(btn.dataset.id);
+      btn.textContent='✓ Ditambahkan';
+      btn.classList.add('added');
+      setTimeout(()=>{btn.textContent='+ Keranjang';btn.classList.remove('added')},1200);
+    });
+  });
+
+  /* tilt effect */
+  prodGrid.querySelectorAll('.prod-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-2px)`;
+    });
+    card.addEventListener('mouseleave',()=>{card.style.transform='none'});
+  });
+}
+renderProducts();
+
+/* category filter */
+document.querySelectorAll('.cat-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat=tab.dataset.cat;
+    document.querySelectorAll('.prod-card').forEach(c=>c.classList.toggle('hide',cat!=='all'&&c.dataset.cat!==cat));
+  });
+});
+
+/* ---------- CART ---------- */
+let cart=[];
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const existing=cart.find(x=>x.id===id);
+  if(existing){existing.qty++}else{cart.push({...p,qty:1})}
+  renderCart();
+}
+function removeFromCart(id){cart=cart.filter(x=>x.id!==id);renderCart()}
+function renderCart(){
+  const itemsEl=document.getElementById('cartItems');
+  const totalQty=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartBadge').textContent=totalQty;
+  if(cart.length===0){
+    itemsEl.innerHTML='<div class="cart-empty">Keranjang masih kosong. Tambahkan layanan dari etalase.</div>';
+  }else{
+    itemsEl.innerHTML=cart.map(i=>`
+      <div class="cart-item">
+        <div class="ci-icon">${i.icon}</div>
+        <div class="ci-info">
+          <h5>${i.name} ${i.qty>1?`× ${i.qty}`:''}</h5>
+          <span>${fmt(i.price*i.qty)}</span><br>
+          <button class="ci-remove" onclick="removeFromCart('${i.id}')">Hapus</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('cartTotal').textContent=fmt(total);
+}
+function openCart(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartBackdrop').classList.add('open')}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartBackdrop').classList.remove('open')}
+document.getElementById('cartBtn').addEventListener('click',openCart);
+function checkout(){
+  if(cart.length===0){alert('Keranjang masih kosong.');return}
+  let msg='Halo Aclester, saya mau pesan:%0A';
+  cart.forEach(i=>{msg+=`- ${i.name} (x${i.qty}) — ${fmt(i.price*i.qty)}%0A`});
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  msg+=`%0ATotal estimasi: ${fmt(total)}`;
+  window.open(`https://wa.me/6281234567890?text=${msg}`,'_blank');
+}
+
+/* ---------- 3D HERO ---------- */
+(function initHero3D(){
+  const canvas=document.getElementById('hero3d');
+  if(typeof THREE==='undefined'||!canvas) return;
+  const container=canvas.parentElement;
+  let w=container.clientWidth, h=container.clientHeight;
+
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(w,h);
+
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(45,w/h,0.1,100);
+  camera.position.set(0,0,7);
+
+  const ambient=new THREE.AmbientLight(0xffffff,0.5);
+  scene.add(ambient);
+  const point1=new THREE.PointLight(0x7c5cff,3,20);
+  point1.position.set(3,3,4);
+  scene.add(point1);
+  const point2=new THREE.PointLight(0x34e0ce,2.5,20);
+  point2.position.set(-3,-2,3);
+  scene.add(point2);
+
+  const group=new THREE.Group();
+  scene.add(group);
+
+  const meshes=[];
+  function addMesh(geo,color,pos,scale){
+    const mat=new THREE.MeshStandardMaterial({color,metalness:0.3,roughness:0.35,wireframe:false});
+    const mesh=new THREE.Mesh(geo,mat);
+    mesh.position.set(...pos);
+    mesh.scale.setScalar(scale);
+    group.add(mesh);
+    meshes.push({mesh,speed:0.3+Math.random()*0.4,phase:Math.random()*Math.PI*2});
+    return mesh;
+  }
+
+  addMesh(new THREE.IcosahedronGeometry(1,0),0x7c5cff,[1.4,0.6,0],1.05);
+  addMesh(new THREE.TorusGeometry(0.7,0.25,16,60),0x34e0ce,[-1.5,-0.5,-1],1);
+  addMesh(new THREE.OctahedronGeometry(0.8,0),0x9b82ff,[0.2,-1.4,0.5],0.85);
+  const wireMat=new THREE.MeshBasicMaterial({color:0x34e0ce,wireframe:true,transparent:true,opacity:0.35});
+  const wireMesh=new THREE.Mesh(new THREE.IcosahedronGeometry(2.6,1),wireMat);
+  group.add(wireMesh);
+
+  let mouseX=0, mouseY=0;
+  container.addEventListener('mousemove',e=>{
+    const r=container.getBoundingClientRect();
+    mouseX=((e.clientX-r.left)/r.width-0.5);
+    mouseY=((e.clientY-r.top)/r.height-0.5);
+  });
+
+  const clock=new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    const t=clock.getElapsedTime();
+    meshes.forEach(({mesh,speed,phase})=>{
+      mesh.rotation.x=t*speed;
+      mesh.rotation.y=t*speed*0.8;
+      mesh.position.y+=Math.sin(t*0.6+phase)*0.0025;
+    });
+    wireMesh.rotation.y=t*0.05;
+    wireMesh.rotation.x=t*0.03;
+    group.rotation.y+=(mouseX*0.6-group.rotation.y)*0.03;
+    group.rotation.x+=(-mouseY*0.4-group.rotation.x)*0.03;
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{
+    w=container.clientWidth; h=container.clientHeight;
+    renderer.setSize(w,h);
+    camera.aspect=w/h;
+    camera.updateProjectionMatrix();
+  });
+})();
+
+/* floating chip parallax */
+const heroVisual=document.querySelector('.hero-visual');
+if(heroVisual){
+  heroVisual.addEventListener('mousemove',e=>{
+    const r=heroVisual.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    document.querySelectorAll('.float-chip').forEach((chip,i)=>{
+      const d=(i+1)*10;
+      chip.style.transform=`translate(${x*d}px,${y*d}px)`;
+    });
+  });
+}
+</script>
+</body>
+</html>
